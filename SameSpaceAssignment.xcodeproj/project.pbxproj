@@ -21,6 +21,7 @@
 		1E78E5002AC5A23F00444631 /* SongsListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E78E4FF2AC5A23F00444631 /* SongsListTableViewCell.swift */; };
 		1E78E5022AC5B58B00444631 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E78E5012AC5B58B00444631 /* TabViewController.swift */; };
 		1E78E5042AC5B5FE00444631 /* TopTracksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E78E5032AC5B5FE00444631 /* TopTracksTableViewController.swift */; };
+		1E78E5062AC5BAD800444631 /* TabViewController_Gestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E78E5052AC5BAD800444631 /* TabViewController_Gestures.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		1E78E4FF2AC5A23F00444631 /* SongsListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsListTableViewCell.swift; sourceTree = "<group>"; };
 		1E78E5012AC5B58B00444631 /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		1E78E5032AC5B5FE00444631 /* TopTracksTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTracksTableViewController.swift; sourceTree = "<group>"; };
+		1E78E5052AC5BAD800444631 /* TabViewController_Gestures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController_Gestures.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				1E78E4F32AC59BE800444631 /* SongsListTableViewController.swift */,
+				1E78E5052AC5BAD800444631 /* TabViewController_Gestures.swift */,
 				1E78E5012AC5B58B00444631 /* TabViewController.swift */,
 				1E78E5032AC5B5FE00444631 /* TopTracksTableViewController.swift */,
 			);
@@ -186,6 +189,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E78E5062AC5BAD800444631 /* TabViewController_Gestures.swift in Sources */,
 				1E78E5002AC5A23F00444631 /* SongsListTableViewCell.swift in Sources */,
 				1E78E4F92AC59C8900444631 /* Song.swift in Sources */,
 				1E78E4F72AC59C4E00444631 /* Results.swift in Sources */,

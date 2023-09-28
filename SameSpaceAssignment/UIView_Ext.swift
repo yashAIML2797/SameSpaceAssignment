@@ -70,4 +70,9 @@ extension UIView {
             self.centerYAnchor.constraint(equalTo: superview.centerYAnchor, constant: inset.y).isActive = true
         }
     }
+    
+    func border(_ color: UIColor, width: CGFloat) {
+        layer.borderColor = color.cgColor
+        layer.borderWidth = width
+    }
 }
