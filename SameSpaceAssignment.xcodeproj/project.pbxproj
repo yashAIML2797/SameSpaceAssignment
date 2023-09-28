@@ -19,6 +19,8 @@
 		1E78E4F92AC59C8900444631 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E78E4F82AC59C8900444631 /* Song.swift */; };
 		1E78E4FB2AC5A06F00444631 /* UIView_Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E78E4FA2AC5A06F00444631 /* UIView_Ext.swift */; };
 		1E78E5002AC5A23F00444631 /* SongsListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E78E4FF2AC5A23F00444631 /* SongsListTableViewCell.swift */; };
+		1E78E5022AC5B58B00444631 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E78E5012AC5B58B00444631 /* TabViewController.swift */; };
+		1E78E5042AC5B5FE00444631 /* TopTracksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E78E5032AC5B5FE00444631 /* TopTracksTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		1E78E4F82AC59C8900444631 /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		1E78E4FA2AC5A06F00444631 /* UIView_Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView_Ext.swift; sourceTree = "<group>"; };
 		1E78E4FF2AC5A23F00444631 /* SongsListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsListTableViewCell.swift; sourceTree = "<group>"; };
+		1E78E5012AC5B58B00444631 /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
+		1E78E5032AC5B5FE00444631 /* TopTracksTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTracksTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +92,8 @@
 			isa = PBXGroup;
 			children = (
 				1E78E4F32AC59BE800444631 /* SongsListTableViewController.swift */,
+				1E78E5012AC5B58B00444631 /* TabViewController.swift */,
+				1E78E5032AC5B5FE00444631 /* TopTracksTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -188,6 +194,8 @@
 				1E78E4FB2AC5A06F00444631 /* UIView_Ext.swift in Sources */,
 				1E78E4DD2AC5995000444631 /* AppDelegate.swift in Sources */,
 				1E78E4F12AC5996700444631 /* APIService.swift in Sources */,
+				1E78E5022AC5B58B00444631 /* TabViewController.swift in Sources */,
+				1E78E5042AC5B5FE00444631 /* TopTracksTableViewController.swift in Sources */,
 				1E78E4DF2AC5995000444631 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

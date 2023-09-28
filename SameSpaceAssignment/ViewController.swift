@@ -13,14 +13,14 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        let songsListTableViewController = SongsListTableViewController(style: .plain)
-        let songsListView = songsListTableViewController.view!
+        let tabViewController = TabViewController()
+        let tabView = tabViewController.view!
         
-        view.addSubview(songsListView)
-        addChild(songsListTableViewController)
-        songsListTableViewController.didMove(toParent: self)
+        view.addSubview(tabView)
+        addChild(tabViewController)
+        tabViewController.didMove(toParent: self)
         
-        songsListView.fillInSuperview()
+        tabView.fillInSuperview()
     }
 
 
