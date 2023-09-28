@@ -14,8 +14,9 @@ class SongsListTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
+        tableView.separatorStyle = .none
+        tableView.backgroundColor = .black
+        tableView.register(SongsListTableViewCell.self, forCellReuseIdentifier: cellID)
         
         APIService.shared.fetchMusicData { result in
             self.songs = result.data
@@ -30,14 +31,10 @@ class SongsListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! SongsListTableViewCell
         let song = songs[indexPath.item]
         
-        var configuration = cell.defaultContentConfiguration()
-        configuration.text = song.name
-        configuration.secondaryText = song.artist
-        
-        cell.contentConfiguration = configuration
+        cell.configure(with: song)
         
         return cell
     }

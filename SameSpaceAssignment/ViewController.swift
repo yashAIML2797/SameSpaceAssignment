@@ -13,7 +13,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        let songsListTableViewController = SongsListTableViewController()
+        let songsListTableViewController = SongsListTableViewController(style: .plain)
         let songsListView = songsListTableViewController.view!
         
         view.addSubview(songsListView)
