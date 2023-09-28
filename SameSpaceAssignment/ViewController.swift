@@ -12,7 +12,15 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        APIService.shared.fetchMusicData()
+        
+        let songsListTableViewController = SongsListTableViewController()
+        let songsListView = songsListTableViewController.view!
+        
+        view.addSubview(songsListView)
+        addChild(songsListTableViewController)
+        songsListTableViewController.didMove(toParent: self)
+        
+        songsListView.fillInSuperview()
     }
 
 

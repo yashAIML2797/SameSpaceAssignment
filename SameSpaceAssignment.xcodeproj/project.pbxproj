@@ -14,6 +14,10 @@
 		1E78E4E62AC5995100444631 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E78E4E52AC5995100444631 /* Assets.xcassets */; };
 		1E78E4E92AC5995100444631 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E78E4E72AC5995100444631 /* LaunchScreen.storyboard */; };
 		1E78E4F12AC5996700444631 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E78E4F02AC5996700444631 /* APIService.swift */; };
+		1E78E4F42AC59BE800444631 /* SongsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E78E4F32AC59BE800444631 /* SongsListTableViewController.swift */; };
+		1E78E4F72AC59C4E00444631 /* Results.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E78E4F62AC59C4E00444631 /* Results.swift */; };
+		1E78E4F92AC59C8900444631 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E78E4F82AC59C8900444631 /* Song.swift */; };
+		1E78E4FB2AC5A06F00444631 /* UIView_Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E78E4FA2AC5A06F00444631 /* UIView_Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +30,10 @@
 		1E78E4E82AC5995100444631 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1E78E4EA2AC5995100444631 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1E78E4F02AC5996700444631 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		1E78E4F32AC59BE800444631 /* SongsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsListTableViewController.swift; sourceTree = "<group>"; };
+		1E78E4F62AC59C4E00444631 /* Results.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Results.swift; sourceTree = "<group>"; };
+		1E78E4F82AC59C8900444631 /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
+		1E78E4FA2AC5A06F00444631 /* UIView_Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView_Ext.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,8 +66,11 @@
 		1E78E4DB2AC5995000444631 /* SameSpaceAssignment */ = {
 			isa = PBXGroup;
 			children = (
+				1E78E4F52AC59C4000444631 /* Model */,
+				1E78E4F22AC59B9C00444631 /* Controllers */,
 				1E78E4DC2AC5995000444631 /* AppDelegate.swift */,
 				1E78E4DE2AC5995000444631 /* SceneDelegate.swift */,
+				1E78E4FA2AC5A06F00444631 /* UIView_Ext.swift */,
 				1E78E4E02AC5995000444631 /* ViewController.swift */,
 				1E78E4F02AC5996700444631 /* APIService.swift */,
 				1E78E4E22AC5995000444631 /* Main.storyboard */,
@@ -68,6 +79,23 @@
 				1E78E4EA2AC5995100444631 /* Info.plist */,
 			);
 			path = SameSpaceAssignment;
+			sourceTree = "<group>";
+		};
+		1E78E4F22AC59B9C00444631 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1E78E4F32AC59BE800444631 /* SongsListTableViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		1E78E4F52AC59C4000444631 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1E78E4F62AC59C4E00444631 /* Results.swift */,
+				1E78E4F82AC59C8900444631 /* Song.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,7 +169,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E78E4F92AC59C8900444631 /* Song.swift in Sources */,
+				1E78E4F72AC59C4E00444631 /* Results.swift in Sources */,
+				1E78E4F42AC59BE800444631 /* SongsListTableViewController.swift in Sources */,
 				1E78E4E12AC5995000444631 /* ViewController.swift in Sources */,
+				1E78E4FB2AC5A06F00444631 /* UIView_Ext.swift in Sources */,
 				1E78E4DD2AC5995000444631 /* AppDelegate.swift in Sources */,
 				1E78E4F12AC5996700444631 /* APIService.swift in Sources */,
 				1E78E4DF2AC5995000444631 /* SceneDelegate.swift in Sources */,
