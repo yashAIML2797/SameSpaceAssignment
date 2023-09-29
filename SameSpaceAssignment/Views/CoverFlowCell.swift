@@ -9,24 +9,11 @@ import UIKit
 
 class CoverFlowCell: UICollectionViewCell {
     
-    let line: UIView = {
-        let view = UIView()
-        view.backgroundColor = .white
-        return view
-    }()
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         backgroundColor = .red
-        
-        addSubview(line)
-        line.anchor(
-            top: topAnchor,
-            bottom: bottomAnchor,
-            width: 1
-        )
-        line.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        layer.cornerRadius = 4
     }
     
     required init?(coder: NSCoder) {
