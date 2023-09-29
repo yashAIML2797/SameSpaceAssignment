@@ -19,6 +19,12 @@ class TabViewController: UIViewController {
         return view
     }()
     
+    lazy var tabView: TabView = {
+        let view = TabView()
+        view.delegate = self
+        return view
+    }()
+    
     var isShowingSecondViewController = false
     
     override func viewDidLoad() {
@@ -30,6 +36,8 @@ class TabViewController: UIViewController {
     }
     
     private func setupViews() {
+        view.backgroundColor = .black
+        
         let songsListTableViewController = SongsListTableViewController(style: .plain)
         let topTracksTableViewController = TopTracksTableViewController(style: .plain)
         
@@ -65,5 +73,12 @@ class TabViewController: UIViewController {
         addChild(topTracksTableViewController)
         topTracksTableViewController.didMove(toParent: self)
         
+        view.addSubview(tabView)
+        tabView.anchor(
+            leading:    view.leadingAnchor,
+            trailing:   view.trailingAnchor,
+            bottom:     view.bottomAnchor,
+            height:     120
+        )
     }
 }

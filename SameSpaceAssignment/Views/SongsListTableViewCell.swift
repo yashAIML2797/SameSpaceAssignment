@@ -29,7 +29,7 @@ class SongsListTableViewCell: UITableViewCell {
         let label = UILabel()
         label.font = .systemFont(ofSize: 15, weight: .regular)
         label.text = "Artist Name"
-        label.textColor = .white
+        label.textColor = .lightGray
         return label
     }()
     

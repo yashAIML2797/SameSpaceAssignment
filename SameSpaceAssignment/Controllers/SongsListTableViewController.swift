@@ -16,6 +16,7 @@ class SongsListTableViewController: UITableViewController {
         super.viewDidLoad()
         tableView.separatorStyle = .none
         tableView.backgroundColor = .black
+        tableView.contentInset.bottom = 120
         tableView.register(SongsListTableViewCell.self, forCellReuseIdentifier: cellID)
         
         APIService.shared.fetchMusicData { result in

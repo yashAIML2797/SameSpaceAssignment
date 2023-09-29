@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension TabViewController: UIGestureRecognizerDelegate {
+extension TabViewController: UIGestureRecognizerDelegate, TabViewDelegate {
     func setupSwipeGesture() {
         swipeGesture = UIPanGestureRecognizer(target: self, action: #selector(handleSwipe))
         swipeGesture.name = "swipe"
@@ -51,12 +51,14 @@ extension TabViewController: UIGestureRecognizerDelegate {
         }
     }
     
-    private func switchViewController() {
+    func switchViewController() {
         if isShowingSecondViewController {
             showFirstViewController()
         } else {
             showSecondViewController()
         }
+        
+        tabView.switchButtonStates()
     }
     
     private func showFirstViewController() {
