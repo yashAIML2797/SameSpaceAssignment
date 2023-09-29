@@ -24,6 +24,10 @@
 		1E78E5062AC5BAD800444631 /* TabViewController_Gestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E78E5052AC5BAD800444631 /* TabViewController_Gestures.swift */; };
 		1E78E5082AC675FA00444631 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E78E5072AC675FA00444631 /* TabView.swift */; };
 		1E78E50A2AC67B1A00444631 /* TabViewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E78E5092AC67B1A00444631 /* TabViewButton.swift */; };
+		1E78E50C2AC69E3400444631 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E78E50B2AC69E3400444631 /* PlayerViewController.swift */; };
+		1E78E50E2AC6A13400444631 /* CoverFlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E78E50D2AC6A13400444631 /* CoverFlowViewController.swift */; };
+		1E78E5122AC7111500444631 /* CoverFlowViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E78E5112AC7111500444631 /* CoverFlowViewLayout.swift */; };
+		1E78E5142AC7116A00444631 /* CoverFlowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E78E5132AC7116A00444631 /* CoverFlowCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +50,10 @@
 		1E78E5052AC5BAD800444631 /* TabViewController_Gestures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController_Gestures.swift; sourceTree = "<group>"; };
 		1E78E5072AC675FA00444631 /* TabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
 		1E78E5092AC67B1A00444631 /* TabViewButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewButton.swift; sourceTree = "<group>"; };
+		1E78E50B2AC69E3400444631 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
+		1E78E50D2AC6A13400444631 /* CoverFlowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverFlowViewController.swift; sourceTree = "<group>"; };
+		1E78E5112AC7111500444631 /* CoverFlowViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverFlowViewLayout.swift; sourceTree = "<group>"; };
+		1E78E5132AC7116A00444631 /* CoverFlowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverFlowCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,9 +105,9 @@
 		1E78E4F22AC59B9C00444631 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				1E78E5102AC710EF00444631 /* PlayerViewController */,
+				1E78E50F2AC710D500444631 /* TabViewController */,
 				1E78E4F32AC59BE800444631 /* SongsListTableViewController.swift */,
-				1E78E5052AC5BAD800444631 /* TabViewController_Gestures.swift */,
-				1E78E5012AC5B58B00444631 /* TabViewController.swift */,
 				1E78E5032AC5B5FE00444631 /* TopTracksTableViewController.swift */,
 			);
 			path = Controllers;
@@ -118,10 +126,30 @@
 			isa = PBXGroup;
 			children = (
 				1E78E4FF2AC5A23F00444631 /* SongsListTableViewCell.swift */,
+				1E78E5132AC7116A00444631 /* CoverFlowCell.swift */,
 				1E78E5072AC675FA00444631 /* TabView.swift */,
 				1E78E5092AC67B1A00444631 /* TabViewButton.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		1E78E50F2AC710D500444631 /* TabViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1E78E5012AC5B58B00444631 /* TabViewController.swift */,
+				1E78E5052AC5BAD800444631 /* TabViewController_Gestures.swift */,
+			);
+			path = TabViewController;
+			sourceTree = "<group>";
+		};
+		1E78E5102AC710EF00444631 /* PlayerViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1E78E50B2AC69E3400444631 /* PlayerViewController.swift */,
+				1E78E50D2AC6A13400444631 /* CoverFlowViewController.swift */,
+				1E78E5112AC7111500444631 /* CoverFlowViewLayout.swift */,
+			);
+			path = PlayerViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -204,11 +232,15 @@
 				1E78E4F42AC59BE800444631 /* SongsListTableViewController.swift in Sources */,
 				1E78E4E12AC5995000444631 /* ViewController.swift in Sources */,
 				1E78E4FB2AC5A06F00444631 /* UIView_Ext.swift in Sources */,
+				1E78E5122AC7111500444631 /* CoverFlowViewLayout.swift in Sources */,
 				1E78E4DD2AC5995000444631 /* AppDelegate.swift in Sources */,
+				1E78E5142AC7116A00444631 /* CoverFlowCell.swift in Sources */,
 				1E78E4F12AC5996700444631 /* APIService.swift in Sources */,
 				1E78E5022AC5B58B00444631 /* TabViewController.swift in Sources */,
 				1E78E5042AC5B5FE00444631 /* TopTracksTableViewController.swift in Sources */,
 				1E78E4DF2AC5995000444631 /* SceneDelegate.swift in Sources */,
+				1E78E50E2AC6A13400444631 /* CoverFlowViewController.swift in Sources */,
+				1E78E50C2AC69E3400444631 /* PlayerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
