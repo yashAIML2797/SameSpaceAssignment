@@ -7,15 +7,22 @@
 
 import UIKit
 
+protocol PlayerViewControllerDelegate: NSObject {
+    var songs: [Song] {get set}
+    
+    func launchPlayer(with song: Song)
+}
+
 class PlayerViewController: UIViewController {
     
     var coverFlowController: CoverFlowViewController!
+    weak var delegate: PlayerViewControllerDelegate?
     
     let nameLable: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 22, weight: .bold)
         label.text = "Song Name"
-        label.textColor = .black
+        label.textColor = .white
         return label
     }()
     
@@ -30,6 +37,7 @@ class PlayerViewController: UIViewController {
     let progressView: UIProgressView = {
         let view = UIProgressView()
         view.progress = 0.5
+        view.tintColor = .lightGray
         return view
     }()
     
@@ -53,6 +61,7 @@ class PlayerViewController: UIViewController {
         let button = UIButton()
         let config = UIImage.SymbolConfiguration(pointSize: 64)
         button.setImage(UIImage(systemName: "play.circle.fill", withConfiguration: config), for: .normal)
+        button.tintColor = .white
         return button
     }()
     
@@ -61,6 +70,7 @@ class PlayerViewController: UIViewController {
         var config = UIButton.Configuration.plain()
         button.configuration = config
         button.setImage(UIImage(systemName: "forward.fill"), for: .normal)
+        button.tintColor = .lightGray
         return button
     }()
     
@@ -69,11 +79,22 @@ class PlayerViewController: UIViewController {
         var config = UIButton.Configuration.plain()
         button.configuration = config
         button.setImage(UIImage(systemName: "backward.fill"), for: .normal)
+        button.tintColor = .lightGray
         return button
+    }()
+    
+    var backgroundGradient: CAGradientLayer = {
+        let layer = CAGradientLayer()
+        layer.colors = [UIColor.lightGray.cgColor, UIColor.black.cgColor]
+        layer.startPoint = .init(x: 0.5, y: 0)
+        layer.endPoint = .init(x: 0.5, y: 1)
+        return layer
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .black
+        view.layer.addSublayer(backgroundGradient)
         
         coverFlowController = CoverFlowViewController()
         let coverFlowView = coverFlowController.view!
@@ -148,5 +169,18 @@ class PlayerViewController: UIViewController {
             inset: .init(top: 0, left: 0, bottom: 0, right: 48)
         )
         previousButton.centerYAnchor.constraint(equalTo: playButton.centerYAnchor).isActive = true
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        backgroundGradient.frame = view.bounds
+    }
+    
+    func configure(with song: Song) {
+        let color = UIColor(hex: song.accent)
+        backgroundGradient.colors = [color.cgColor, UIColor.black.cgColor]
+        
+        nameLable.text = song.name
+        artistLable.text = song.artist
     }
 }

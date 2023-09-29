@@ -13,7 +13,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        let tabViewController = PlayerViewController()
+        let tabViewController = TabViewController()
         let tabView = tabViewController.view!
         
         view.addSubview(tabView)

@@ -23,7 +23,7 @@ class CoverFlowViewController: UICollectionViewController, UICollectionViewDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        collectionView.backgroundColor = .clear
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.decelerationRate = .fast
         
@@ -44,11 +44,18 @@ class CoverFlowViewController: UICollectionViewController, UICollectionViewDeleg
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        10
+        if let parent = parent as? PlayerViewController {
+            return parent.delegate?.songs.count ?? .zero
+        }
+        return .zero
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! CoverFlowCell
+        if let parent = parent as? PlayerViewController, let delegate = parent.delegate {
+            let song = delegate.songs[indexPath.item]
+            cell.configure(with: song.cover)
+        }
         return cell
     }
     

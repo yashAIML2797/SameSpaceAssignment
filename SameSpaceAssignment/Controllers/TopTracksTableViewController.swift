@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TopTracksTableViewController: UITableViewController {
+class TopTracksTableViewController: UITableViewController, PlayerViewControllerDelegate {
     
     var songs: [Song] = []
     let cellID = "cellID"
@@ -42,5 +42,24 @@ class TopTracksTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         72
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let song = songs[indexPath.item]
+        launchPlayer(with: song)
+    }
+    
+    func launchPlayer(with song: Song) {
+        let playerController = PlayerViewController()
+        playerController.delegate = self
+        let playerView = playerController.view!
+        
+        if let tabView = parent as? TabViewController {
+            tabView.view.addSubview(playerView)
+            tabView.addChild(playerController)
+            playerController.didMove(toParent: tabView)
+            
+            playerView.fillInSuperview()
+        }
     }
 }
