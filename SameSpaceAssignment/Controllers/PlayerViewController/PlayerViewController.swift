@@ -201,7 +201,15 @@ class PlayerViewController: UIViewController {
     }
     
     @objc func handlePlayButtonAction(sender: UIButton) {
-        avPlayer?.pause()
+        let config = UIImage.SymbolConfiguration(pointSize: 64)
+        
+        if avPlayer?.timeControlStatus == .playing {
+            avPlayer?.pause()
+            playButton.setImage(UIImage(systemName: "play.circle.fill", withConfiguration: config), for: .normal)
+        } else {
+            avPlayer?.play()
+            playButton.setImage(UIImage(systemName: "pause.circle.fill", withConfiguration: config), for: .normal)
+        }
     }
     
     @objc func handleNextButtonAction(sender: UIButton) {
@@ -249,6 +257,8 @@ class PlayerViewController: UIViewController {
 
                 Task {
                     let duration = try await item.asset.load(.duration)
+                    let config = UIImage.SymbolConfiguration(pointSize: 64)
+                    playButton.setImage(UIImage(systemName: "pause.circle.fill", withConfiguration: config), for: .normal)
 
                     let minutes = duration.seconds / 60
                     let seconds = duration.seconds.truncatingRemainder(dividingBy: 60)
