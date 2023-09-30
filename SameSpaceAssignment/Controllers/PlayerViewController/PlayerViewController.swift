@@ -17,6 +17,7 @@ class PlayerViewController: UIViewController {
     
     var coverFlowController: CoverFlowViewController!
     weak var delegate: PlayerViewControllerDelegate?
+    var currentPlayingSong: Song?
     
     let nameLable: UILabel = {
         let label = UILabel()
@@ -169,6 +170,8 @@ class PlayerViewController: UIViewController {
             inset: .init(top: 0, left: 0, bottom: 0, right: 48)
         )
         previousButton.centerYAnchor.constraint(equalTo: playButton.centerYAnchor).isActive = true
+        
+        playButton.addTarget(self, action: #selector(handlePlayButtonAction), for: .touchUpInside)
     }
     
     override func viewDidLayoutSubviews() {
@@ -182,5 +185,9 @@ class PlayerViewController: UIViewController {
         
         nameLable.text = song.name
         artistLable.text = song.artist
+    }
+    
+    @objc func handlePlayButtonAction(sender: UIButton) {
+        self.dismiss(animated: true)
     }
 }

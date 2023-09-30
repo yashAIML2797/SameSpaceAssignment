@@ -32,8 +32,8 @@ class CoverFlowViewLayout: UICollectionViewFlowLayout {
             }
         }
         
-        let targetOffsetX = CGFloat((304 + 16) * cellIndex) - collectionView.contentInset.left
-        contentOffset.x = targetOffsetX
+        
+        contentOffset.x = getTargetOffsetX(for: cellIndex)
         
         return contentOffset
 
@@ -48,5 +48,14 @@ class CoverFlowViewLayout: UICollectionViewFlowLayout {
         let index = Int(round(temp))
         
         return index
+    }
+    
+    func getTargetOffsetX(for index: Int) -> CGFloat {
+        guard let collectionView = collectionView else {
+            return .zero
+        }
+        
+        let targetOffsetX = CGFloat((304 + 16) * index) - collectionView.contentInset.left
+        return targetOffsetX
     }
 }

@@ -10,6 +10,7 @@ import UIKit
 class CoverFlowViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     let cellID = "cellID"
+    var didLaunch = false
     
     init() {
         let layout = CoverFlowViewLayout()
@@ -32,7 +33,14 @@ class CoverFlowViewController: UICollectionViewController, UICollectionViewDeleg
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        collectionView.contentOffset.x = -collectionView.contentInset.left
+//        if let parent = parent as? PlayerViewController,
+//           let delegate = parent.delegate,
+//           let currentSong = parent.currentPlayingSong,
+//           let index = delegate.songs.firstIndex(where: {$0.id == currentSong.id}),
+//           let layout = collectionView.collectionViewLayout as? CoverFlowViewLayout
+//        {
+//            collectionView.contentOffset.x = layout.getTargetOffsetX(for: index)
+//        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -41,6 +49,18 @@ class CoverFlowViewController: UICollectionViewController, UICollectionViewDeleg
         let inset: CGFloat = (collectionView.frame.width * 0.5) - (304 * 0.5)
         collectionView.contentInset.left =  inset
         collectionView.contentInset.right = inset
+        
+        if !didLaunch {
+            if let parent = parent as? PlayerViewController,
+               let delegate = parent.delegate,
+               let currentSong = parent.currentPlayingSong,
+               let index = delegate.songs.firstIndex(where: {$0.id == currentSong.id}),
+               let layout = collectionView.collectionViewLayout as? CoverFlowViewLayout
+            {
+                collectionView.contentOffset.x = layout.getTargetOffsetX(for: index)
+            }
+            didLaunch = true
+        }
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
