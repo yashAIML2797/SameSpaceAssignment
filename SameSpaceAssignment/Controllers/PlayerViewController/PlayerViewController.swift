@@ -25,7 +25,7 @@ class PlayerViewController: UIViewController {
     var currentPlayingSong: Song?
     var songs: [Song] = []
     var swipeDownToCloseGesture: UIPanGestureRecognizer!
-    var avPlayer: AVPlayer?
+    var avPlayer: AVQueuePlayer?
     var timeObserver: Any?
     
     let nameLable: UILabel = {
@@ -223,11 +223,22 @@ class PlayerViewController: UIViewController {
             self.coverFlowController.collectionView.setContentOffset(CGPoint(x: offsetX, y: 0), animated: true)
             
             let song = songs[layout.currentItemIdex]
+            self.currentPlayingSong = song
             self.configure(with: song)
         }
+        
+        play()
     }
     
     @objc func handlePreviousButtonAction(sender: UIButton) {
+        
+        guard (avPlayer?.currentTime().seconds ?? 0) <= 3 else {
+            avPlayer?.pause()
+            avPlayer?.seek(to: .zero)
+            avPlayer?.play()
+            return
+        }
+        
         if let layout = coverFlowController.collectionView.collectionViewLayout as? CoverFlowViewLayout {
             if layout.currentItemIdex > 0 {
                 layout.currentItemIdex -= 1
@@ -239,20 +250,23 @@ class PlayerViewController: UIViewController {
             self.coverFlowController.collectionView.setContentOffset(CGPoint(x: offsetX, y: 0), animated: true)
             
             let song = songs[layout.currentItemIdex]
+            self.currentPlayingSong = song
             self.configure(with: song)
         }
+        
+        play()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        play()
+        start()
     }
     
-    func play() {
+    func start() {
         if let song = currentPlayingSong {
             if let url = URL(string: song.url) {
                 let item = AVPlayerItem(url: url)
-                avPlayer = AVPlayer(playerItem: item)
+                avPlayer = AVQueuePlayer(playerItem: item)
                 avPlayer?.play()
 
                 Task {
@@ -270,7 +284,65 @@ class PlayerViewController: UIViewController {
 
                     if let minStr = timeformatter.string(from: NSNumber(value: minutes)),
                        let secStr = timeformatter.string(from: NSNumber(value: seconds)) {
-                        self.currentTimeLabel.text = "0:00"
+                        self.currentTimeLabel.text = "00:00"
+                        self.overallTimeLabel.text = "\(minStr):\(secStr)"
+                    }
+                    
+                    timeObserver = avPlayer?.addPeriodicTimeObserver(forInterval: CMTime.init(value: 1, timescale: 1), queue: .main, using: { time in
+                        print(time.seconds)
+                        let progress = time.seconds / duration.seconds
+                        self.progressView.progress = Float(progress)
+                        
+                        let minutes = time.seconds / 60
+                        let seconds = time.seconds.truncatingRemainder(dividingBy: 60)
+                        
+                        if let minStr = timeformatter.string(from: NSNumber(value: minutes)),
+                           let secStr = timeformatter.string(from: NSNumber(value: seconds)) {
+                            self.currentTimeLabel.text = "\(minStr):\(secStr)"
+                        }
+                    })
+                }
+            }
+        }
+    }
+    
+    func play() {
+        let config = UIImage.SymbolConfiguration(pointSize: 64)
+        currentTimeLabel.text = "-:--"
+        overallTimeLabel.text = "-:--"
+        progressView.progress = 0.0
+
+        playButton.setImage(UIImage(systemName: "play.circle.fill", withConfiguration: config), for: .normal)
+        avPlayer?.pause()
+        avPlayer?.removeAllItems()
+        if let observer = timeObserver {
+            avPlayer?.removeTimeObserver(observer)
+        }
+        avPlayer = nil
+        
+        
+        if let song = currentPlayingSong {
+            if let url = URL(string: song.url) {
+                let item = AVPlayerItem(url: url)
+                avPlayer = AVQueuePlayer(playerItem: item)
+                avPlayer?.play()
+
+                Task {
+                    let duration = try await item.asset.load(.duration)
+                    let config = UIImage.SymbolConfiguration(pointSize: 64)
+                    playButton.setImage(UIImage(systemName: "pause.circle.fill", withConfiguration: config), for: .normal)
+
+                    let minutes = duration.seconds / 60
+                    let seconds = duration.seconds.truncatingRemainder(dividingBy: 60)
+                    
+                    let timeformatter = NumberFormatter()
+                    timeformatter.minimumIntegerDigits = 2
+                    timeformatter.minimumFractionDigits = 0
+                    timeformatter.roundingMode = .down
+
+                    if let minStr = timeformatter.string(from: NSNumber(value: minutes)),
+                       let secStr = timeformatter.string(from: NSNumber(value: seconds)) {
+                        self.currentTimeLabel.text = "00:00"
                         self.overallTimeLabel.text = "\(minStr):\(secStr)"
                     }
                     
