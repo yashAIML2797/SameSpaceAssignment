@@ -30,6 +30,7 @@
 		1E78E5142AC7116A00444631 /* CoverFlowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E78E5132AC7116A00444631 /* CoverFlowCell.swift */; };
 		1EAC148D2AC7374D0095FC38 /* UIColor_Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EAC148C2AC7374D0095FC38 /* UIColor_Ext.swift */; };
 		1EACACA62AC7CA1500E4B3F0 /* PlayerViewController_Gesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EACACA52AC7CA1500E4B3F0 /* PlayerViewController_Gesture.swift */; };
+		1EACACA82AC8754300E4B3F0 /* MinimizedPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EACACA72AC8754300E4B3F0 /* MinimizedPlayerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		1E78E5132AC7116A00444631 /* CoverFlowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverFlowCell.swift; sourceTree = "<group>"; };
 		1EAC148C2AC7374D0095FC38 /* UIColor_Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor_Ext.swift; sourceTree = "<group>"; };
 		1EACACA52AC7CA1500E4B3F0 /* PlayerViewController_Gesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController_Gesture.swift; sourceTree = "<group>"; };
+		1EACACA72AC8754300E4B3F0 /* MinimizedPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinimizedPlayerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +134,7 @@
 			children = (
 				1E78E4FF2AC5A23F00444631 /* SongsListTableViewCell.swift */,
 				1E78E5132AC7116A00444631 /* CoverFlowCell.swift */,
+				1EACACA72AC8754300E4B3F0 /* MinimizedPlayerView.swift */,
 				1E78E5072AC675FA00444631 /* TabView.swift */,
 				1E78E5092AC67B1A00444631 /* TabViewButton.swift */,
 			);
@@ -253,6 +256,7 @@
 				1EAC148D2AC7374D0095FC38 /* UIColor_Ext.swift in Sources */,
 				1E78E4F12AC5996700444631 /* APIService.swift in Sources */,
 				1E78E5022AC5B58B00444631 /* TabViewController.swift in Sources */,
+				1EACACA82AC8754300E4B3F0 /* MinimizedPlayerView.swift in Sources */,
 				1E78E5042AC5B5FE00444631 /* TopTracksTableViewController.swift in Sources */,
 				1E78E4DF2AC5995000444631 /* SceneDelegate.swift in Sources */,
 				1E78E50E2AC6A13400444631 /* CoverFlowViewController.swift in Sources */,

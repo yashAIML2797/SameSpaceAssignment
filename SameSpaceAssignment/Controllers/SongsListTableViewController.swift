@@ -55,9 +55,10 @@ class SongsListTableViewController: UITableViewController, PlayerViewControllerD
         playerController.configure(with: song)
         playerController.currentPlayingSong = song
         
-        if let parent = parent {
+        if let parent = parent as? TabViewController {
             playerController.modalPresentationStyle = .custom
             parent.present(playerController, animated: true)
+            parent.addMinimizedPlayer(for: song)
         }
     }
 }

@@ -13,6 +13,11 @@ class TabViewController: UIViewController {
     var songsListView: UIView!
     var topTracksView: UIView!
     
+    let minimizedPlayer: MinimizedPlayerView = {
+        let view = MinimizedPlayerView()
+        return view
+    }()
+    
     let containerView: UIView = {
         let view = UIView()
         view.backgroundColor = .black
@@ -80,5 +85,16 @@ class TabViewController: UIViewController {
             bottom:     view.bottomAnchor,
             height:     120
         )
+    }
+    
+    func addMinimizedPlayer(for song: Song) {
+        view.addSubview(minimizedPlayer)
+        minimizedPlayer.anchor(
+            leading:    view.leadingAnchor,
+            trailing:   view.trailingAnchor,
+            bottom:     tabView.topAnchor,
+            height:     64
+        )
+        minimizedPlayer.configure(with: song)
     }
 }

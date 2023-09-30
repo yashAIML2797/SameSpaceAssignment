@@ -87,7 +87,9 @@ class CoverFlowViewController: UICollectionViewController, UICollectionViewDeleg
         {
             if layout.currentItemIdex >= 0 && layout.currentItemIdex < parent.songs.count {
                 let song = parent.songs[layout.currentItemIdex]
+                parent.currentPlayingSong = song
                 parent.configure(with: song)
+                parent.play()
             }
         }
     }
