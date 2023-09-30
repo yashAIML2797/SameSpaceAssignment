@@ -16,8 +16,13 @@ protocol PlayerViewControllerDelegate: NSObject {
 class PlayerViewController: UIViewController {
     
     var coverFlowController: CoverFlowViewController!
-    weak var delegate: PlayerViewControllerDelegate?
+    weak var delegate: PlayerViewControllerDelegate? {
+        didSet {
+            self.songs = delegate?.songs ?? []
+        }
+    }
     var currentPlayingSong: Song?
+    var songs: [Song] = []
     var swipeDownToCloseGesture: UIPanGestureRecognizer!
     
     let nameLable: UILabel = {
@@ -168,13 +173,15 @@ class PlayerViewController: UIViewController {
         view.addSubview(previousButton)
         previousButton.anchor(
             trailing: playButton.leadingAnchor,
-//            width: 44,
-//            height: 44,
+            width: 44,
+            height: 44,
             inset: .init(top: 0, left: 0, bottom: 0, right: 48)
         )
         previousButton.centerYAnchor.constraint(equalTo: playButton.centerYAnchor).isActive = true
         
         playButton.addTarget(self, action: #selector(handlePlayButtonAction), for: .touchUpInside)
+        nextButton.addTarget(self, action: #selector(handleNextButtonAction), for: .touchUpInside)
+        previousButton.addTarget(self, action: #selector(handlePreviousButtonAction), for: .touchUpInside)
     }
     
     override func viewDidLayoutSubviews() {
@@ -192,5 +199,36 @@ class PlayerViewController: UIViewController {
     
     @objc func handlePlayButtonAction(sender: UIButton) {
         self.dismiss(animated: true)
+    }
+    
+    @objc func handleNextButtonAction(sender: UIButton) {
+        if let layout = coverFlowController.collectionView.collectionViewLayout as? CoverFlowViewLayout {
+            if layout.currentItemIdex < (songs.count - 1) {
+                layout.currentItemIdex += 1
+            } else {
+                layout.currentItemIdex = songs.count - 1
+            }
+            let offsetX = layout.getTargetOffsetX(for: layout.currentItemIdex)
+            self.coverFlowController.collectionView.setContentOffset(CGPoint(x: offsetX, y: 0), animated: true)
+            
+            let song = songs[layout.currentItemIdex]
+            self.configure(with: song)
+        }
+    }
+    
+    @objc func handlePreviousButtonAction(sender: UIButton) {
+        if let layout = coverFlowController.collectionView.collectionViewLayout as? CoverFlowViewLayout {
+            if layout.currentItemIdex > 0 {
+                layout.currentItemIdex -= 1
+            } else {
+                layout.currentItemIdex = 0
+            }
+            
+            let offsetX = layout.getTargetOffsetX(for: layout.currentItemIdex)
+            self.coverFlowController.collectionView.setContentOffset(CGPoint(x: offsetX, y: 0), animated: true)
+            
+            let song = songs[layout.currentItemIdex]
+            self.configure(with: song)
+        }
     }
 }

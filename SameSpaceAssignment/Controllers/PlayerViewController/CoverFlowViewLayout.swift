@@ -9,31 +9,28 @@ import UIKit
 
 class CoverFlowViewLayout: UICollectionViewFlowLayout {
     
-    var currentDisplayItemIndex = 0
+    var previousItemIndex = 0
+    var currentItemIdex = 0
     
     override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
         
         var contentOffset = super.targetContentOffset(forProposedContentOffset: proposedContentOffset, withScrollingVelocity: velocity)
-
-        guard let collectionView = collectionView else {
-            return contentOffset
-        }
         
-        var cellIndex = currentDisplayItemIndex
+        var cellIndex = previousItemIndex
         let targetCellIndex = getCellIndex(from: contentOffset)
         
         if abs(velocity.x) > 0.5 {
             cellIndex += (velocity.x > 0 ? 1 : -1)
         } else {
-            if targetCellIndex > currentDisplayItemIndex {
+            if targetCellIndex > previousItemIndex {
                 cellIndex += 1
-            } else if targetCellIndex < currentDisplayItemIndex {
+            } else if targetCellIndex < previousItemIndex {
                 cellIndex -= 1
             }
         }
         
-        
         contentOffset.x = getTargetOffsetX(for: cellIndex)
+        currentItemIdex = cellIndex
         
         return contentOffset
 

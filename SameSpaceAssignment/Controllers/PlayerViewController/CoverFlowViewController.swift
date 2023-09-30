@@ -31,18 +31,6 @@ class CoverFlowViewController: UICollectionViewController, UICollectionViewDeleg
         collectionView.register(CoverFlowCell.self, forCellWithReuseIdentifier: cellID)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-//        if let parent = parent as? PlayerViewController,
-//           let delegate = parent.delegate,
-//           let currentSong = parent.currentPlayingSong,
-//           let index = delegate.songs.firstIndex(where: {$0.id == currentSong.id}),
-//           let layout = collectionView.collectionViewLayout as? CoverFlowViewLayout
-//        {
-//            collectionView.contentOffset.x = layout.getTargetOffsetX(for: index)
-//        }
-    }
-    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
@@ -52,12 +40,12 @@ class CoverFlowViewController: UICollectionViewController, UICollectionViewDeleg
         
         if !didLaunch {
             if let parent = parent as? PlayerViewController,
-               let delegate = parent.delegate,
                let currentSong = parent.currentPlayingSong,
-               let index = delegate.songs.firstIndex(where: {$0.id == currentSong.id}),
+               let index = parent.songs.firstIndex(where: {$0.id == currentSong.id}),
                let layout = collectionView.collectionViewLayout as? CoverFlowViewLayout
             {
                 collectionView.contentOffset.x = layout.getTargetOffsetX(for: index)
+                layout.currentItemIdex = index
             }
             didLaunch = true
         }
@@ -65,15 +53,15 @@ class CoverFlowViewController: UICollectionViewController, UICollectionViewDeleg
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if let parent = parent as? PlayerViewController {
-            return parent.delegate?.songs.count ?? .zero
+            return parent.songs.count
         }
         return .zero
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! CoverFlowCell
-        if let parent = parent as? PlayerViewController, let delegate = parent.delegate {
-            let song = delegate.songs[indexPath.item]
+        if let parent = parent as? PlayerViewController {
+            let song = parent.songs[indexPath.item]
             cell.configure(with: song.cover)
         }
         return cell
@@ -89,7 +77,18 @@ class CoverFlowViewController: UICollectionViewController, UICollectionViewDeleg
     
     override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         if let layout = collectionView.collectionViewLayout as? CoverFlowViewLayout {
-            layout.currentDisplayItemIndex = layout.getCellIndex(from: scrollView.contentOffset)
+            layout.previousItemIndex = layout.getCellIndex(from: scrollView.contentOffset)
+        }
+    }
+    
+    override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if let layout = collectionView.collectionViewLayout as? CoverFlowViewLayout,
+           let parent = parent as? PlayerViewController
+        {
+            if layout.currentItemIdex >= 0 && layout.currentItemIdex < parent.songs.count {
+                let song = parent.songs[layout.currentItemIdex]
+                parent.configure(with: song)
+            }
         }
     }
 }
