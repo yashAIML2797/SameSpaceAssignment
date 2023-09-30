@@ -55,16 +55,9 @@ class SongsListTableViewController: UITableViewController, PlayerViewControllerD
         playerController.configure(with: song)
         playerController.currentPlayingSong = song
         
-        let playerView = playerController.view!
-        
-        if let tabView = parent as? TabViewController {
-//            tabView.view.addSubview(playerView)
-//            tabView.addChild(playerController)
-//            playerController.didMove(toParent: tabView)
-//
-//            playerView.fillInSuperview()
-            playerController.modalPresentationStyle = .fullScreen
-            self.present(playerController, animated: true)
+        if let parent = parent {
+            playerController.modalPresentationStyle = .custom
+            parent.present(playerController, animated: true)
         }
     }
 }

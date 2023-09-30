@@ -52,14 +52,12 @@ class TopTracksTableViewController: UITableViewController, PlayerViewControllerD
     func launchPlayer(with song: Song) {
         let playerController = PlayerViewController()
         playerController.delegate = self
-        let playerView = playerController.view!
+        playerController.configure(with: song)
+        playerController.currentPlayingSong = song
         
-        if let tabView = parent as? TabViewController {
-            tabView.view.addSubview(playerView)
-            tabView.addChild(playerController)
-            playerController.didMove(toParent: tabView)
-            
-            playerView.fillInSuperview()
+        if let parent = parent {
+            playerController.modalPresentationStyle = .custom
+            parent.present(playerController, animated: true)
         }
     }
 }

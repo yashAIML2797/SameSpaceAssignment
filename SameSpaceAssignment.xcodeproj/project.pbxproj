@@ -29,6 +29,7 @@
 		1E78E5122AC7111500444631 /* CoverFlowViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E78E5112AC7111500444631 /* CoverFlowViewLayout.swift */; };
 		1E78E5142AC7116A00444631 /* CoverFlowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E78E5132AC7116A00444631 /* CoverFlowCell.swift */; };
 		1EAC148D2AC7374D0095FC38 /* UIColor_Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EAC148C2AC7374D0095FC38 /* UIColor_Ext.swift */; };
+		1EACACA62AC7CA1500E4B3F0 /* PlayerViewController_Gesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EACACA52AC7CA1500E4B3F0 /* PlayerViewController_Gesture.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		1E78E5112AC7111500444631 /* CoverFlowViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverFlowViewLayout.swift; sourceTree = "<group>"; };
 		1E78E5132AC7116A00444631 /* CoverFlowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverFlowCell.swift; sourceTree = "<group>"; };
 		1EAC148C2AC7374D0095FC38 /* UIColor_Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor_Ext.swift; sourceTree = "<group>"; };
+		1EACACA52AC7CA1500E4B3F0 /* PlayerViewController_Gesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController_Gesture.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				1E78E50B2AC69E3400444631 /* PlayerViewController.swift */,
+				1EACACA52AC7CA1500E4B3F0 /* PlayerViewController_Gesture.swift */,
 				1E78E50D2AC6A13400444631 /* CoverFlowViewController.swift */,
 				1E78E5112AC7111500444631 /* CoverFlowViewLayout.swift */,
 			);
@@ -237,6 +240,7 @@
 				1E78E5062AC5BAD800444631 /* TabViewController_Gestures.swift in Sources */,
 				1E78E5002AC5A23F00444631 /* SongsListTableViewCell.swift in Sources */,
 				1E78E5082AC675FA00444631 /* TabView.swift in Sources */,
+				1EACACA62AC7CA1500E4B3F0 /* PlayerViewController_Gesture.swift in Sources */,
 				1E78E4F92AC59C8900444631 /* Song.swift in Sources */,
 				1E78E50A2AC67B1A00444631 /* TabViewButton.swift in Sources */,
 				1E78E4F72AC59C4E00444631 /* Results.swift in Sources */,

@@ -18,6 +18,7 @@ class PlayerViewController: UIViewController {
     var coverFlowController: CoverFlowViewController!
     weak var delegate: PlayerViewControllerDelegate?
     var currentPlayingSong: Song?
+    var swipeDownToCloseGesture: UIPanGestureRecognizer!
     
     let nameLable: UILabel = {
         let label = UILabel()
@@ -89,11 +90,13 @@ class PlayerViewController: UIViewController {
         layer.colors = [UIColor.lightGray.cgColor, UIColor.black.cgColor]
         layer.startPoint = .init(x: 0.5, y: 0)
         layer.endPoint = .init(x: 0.5, y: 1)
+        layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         return layer
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupGesture()
         view.backgroundColor = .black
         view.layer.addSublayer(backgroundGradient)
         
@@ -105,11 +108,11 @@ class PlayerViewController: UIViewController {
         coverFlowController.didMove(toParent: self)
         
         coverFlowView.anchor(
-            top:        view.safeAreaLayoutGuide.topAnchor,
+            top:        view.topAnchor,
             leading:    view.leadingAnchor,
             trailing:   view.trailingAnchor,
             height:     304,
-            inset:      .init(top: 93, left: 0, bottom: 0, right: 0)
+            inset:      .init(top: 146, left: 0, bottom: 0, right: 0)
         )
         
         view.addSubview(nameLable)
