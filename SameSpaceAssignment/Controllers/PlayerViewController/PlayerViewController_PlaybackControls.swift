@@ -75,14 +75,14 @@ extension PlayerViewController {
     }
     
     @objc func handleNextButtonAction(sender: UIButton) {
-        if let layout = coverFlowController.collectionView.collectionViewLayout as? CoverFlowViewLayout {
+        if let layout = coverFlowView.collectionViewLayout as? CoverFlowViewLayout {
             if layout.currentItemIdex < (songs.count - 1) {
                 layout.currentItemIdex += 1
             } else {
                 layout.currentItemIdex = songs.count - 1
             }
             let offsetX = layout.getTargetOffsetX(for: layout.currentItemIdex)
-            self.coverFlowController.collectionView.setContentOffset(CGPoint(x: offsetX, y: 0), animated: true)
+            self.coverFlowView.setContentOffset(CGPoint(x: offsetX, y: 0), animated: true)
             
             let song = songs[layout.currentItemIdex]
             self.currentPlayingSong = song
@@ -101,7 +101,7 @@ extension PlayerViewController {
             return
         }
         
-        if let layout = coverFlowController.collectionView.collectionViewLayout as? CoverFlowViewLayout {
+        if let layout = coverFlowView.collectionViewLayout as? CoverFlowViewLayout {
             if layout.currentItemIdex > 0 {
                 layout.currentItemIdex -= 1
             } else {
@@ -109,7 +109,7 @@ extension PlayerViewController {
             }
             
             let offsetX = layout.getTargetOffsetX(for: layout.currentItemIdex)
-            self.coverFlowController.collectionView.setContentOffset(CGPoint(x: offsetX, y: 0), animated: true)
+            self.coverFlowView.setContentOffset(CGPoint(x: offsetX, y: 0), animated: true)
             
             let song = songs[layout.currentItemIdex]
             self.currentPlayingSong = song

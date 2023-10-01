@@ -10,7 +10,6 @@ import AVFoundation
 
 class PlayerViewController: UIViewController {
     weak var minimizedPlayerDelgate: MinimizedPlayerDelgate?
-    var coverFlowController: CoverFlowViewController!
     var currentPlayingSong: Song? {
         didSet {
             if let song = currentPlayingSong {
@@ -20,6 +19,18 @@ class PlayerViewController: UIViewController {
     }
     var songs: [Song] = []
     var swipeDownToCloseGesture: UIPanGestureRecognizer!
+    
+    var didLaunch = false
+    
+    let coverFlowView: UICollectionView = {
+        let layout = CoverFlowViewLayout()
+        layout.scrollDirection = .horizontal
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .clear
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.decelerationRate = .fast
+        return collectionView
+    }()
     
     let nameLable: UILabel = {
         let label = UILabel()
@@ -101,20 +112,7 @@ class PlayerViewController: UIViewController {
         view.backgroundColor = .black
         view.layer.addSublayer(backgroundGradient)
         
-        coverFlowController = CoverFlowViewController()
-        let coverFlowView = coverFlowController.view!
-        
-        view.addSubview(coverFlowView)
-        addChild(coverFlowController)
-        coverFlowController.didMove(toParent: self)
-        
-        coverFlowView.anchor(
-            top:        view.topAnchor,
-            leading:    view.leadingAnchor,
-            trailing:   view.trailingAnchor,
-            height:     304,
-            inset:      .init(top: 146, left: 0, bottom: 0, right: 0)
-        )
+        setupCoverFlowView()
         
         view.addSubview(nameLable)
         nameLable.translatesAutoresizingMaskIntoConstraints = false
@@ -185,6 +183,22 @@ class PlayerViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         backgroundGradient.frame = view.bounds
+        
+        //MARK: CoverFlowView
+        let inset: CGFloat = (view.frame.width * 0.5) - (304 * 0.5)
+        coverFlowView.contentInset.left =  inset
+        coverFlowView.contentInset.right = inset
+        
+        if !didLaunch {
+            if let currentSong = currentPlayingSong,
+               let index = songs.firstIndex(where: {$0.id == currentSong.id}),
+               let layout = coverFlowView.collectionViewLayout as? CoverFlowViewLayout
+            {
+                coverFlowView.contentOffset.x = layout.getTargetOffsetX(for: index)
+                layout.currentItemIdex = index
+            }
+            didLaunch = true
+        }
     }
     
     deinit {

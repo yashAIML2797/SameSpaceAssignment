@@ -25,7 +25,6 @@
 		1E78E5082AC675FA00444631 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E78E5072AC675FA00444631 /* TabView.swift */; };
 		1E78E50A2AC67B1A00444631 /* TabViewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E78E5092AC67B1A00444631 /* TabViewButton.swift */; };
 		1E78E50C2AC69E3400444631 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E78E50B2AC69E3400444631 /* PlayerViewController.swift */; };
-		1E78E50E2AC6A13400444631 /* CoverFlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E78E50D2AC6A13400444631 /* CoverFlowViewController.swift */; };
 		1E78E5122AC7111500444631 /* CoverFlowViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E78E5112AC7111500444631 /* CoverFlowViewLayout.swift */; };
 		1E78E5142AC7116A00444631 /* CoverFlowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E78E5132AC7116A00444631 /* CoverFlowCell.swift */; };
 		1EAC148D2AC7374D0095FC38 /* UIColor_Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EAC148C2AC7374D0095FC38 /* UIColor_Ext.swift */; };
@@ -35,6 +34,7 @@
 		1EC808222AC90CA5009B38A5 /* TabViewController_LaunchPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC808212AC90CA5009B38A5 /* TabViewController_LaunchPlayer.swift */; };
 		1EC8082C2AC9842A009B38A5 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC8082B2AC9842A009B38A5 /* AudioManager.swift */; };
 		1EC8082E2AC9E794009B38A5 /* PlayerViewController_PlaybackControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC8082D2AC9E794009B38A5 /* PlayerViewController_PlaybackControls.swift */; };
+		1EC808302ACA10FD009B38A5 /* PlayerViewController_CoverFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC8082F2ACA10FD009B38A5 /* PlayerViewController_CoverFlowView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,7 +58,6 @@
 		1E78E5072AC675FA00444631 /* TabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
 		1E78E5092AC67B1A00444631 /* TabViewButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewButton.swift; sourceTree = "<group>"; };
 		1E78E50B2AC69E3400444631 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
-		1E78E50D2AC6A13400444631 /* CoverFlowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverFlowViewController.swift; sourceTree = "<group>"; };
 		1E78E5112AC7111500444631 /* CoverFlowViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverFlowViewLayout.swift; sourceTree = "<group>"; };
 		1E78E5132AC7116A00444631 /* CoverFlowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverFlowCell.swift; sourceTree = "<group>"; };
 		1EAC148C2AC7374D0095FC38 /* UIColor_Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor_Ext.swift; sourceTree = "<group>"; };
@@ -68,6 +67,7 @@
 		1EC808212AC90CA5009B38A5 /* TabViewController_LaunchPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController_LaunchPlayer.swift; sourceTree = "<group>"; };
 		1EC8082B2AC9842A009B38A5 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		1EC8082D2AC9E794009B38A5 /* PlayerViewController_PlaybackControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController_PlaybackControls.swift; sourceTree = "<group>"; };
+		1EC8082F2ACA10FD009B38A5 /* PlayerViewController_CoverFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController_CoverFlowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,7 +167,7 @@
 				1E78E50B2AC69E3400444631 /* PlayerViewController.swift */,
 				1EACACA52AC7CA1500E4B3F0 /* PlayerViewController_Gesture.swift */,
 				1EC8082D2AC9E794009B38A5 /* PlayerViewController_PlaybackControls.swift */,
-				1E78E50D2AC6A13400444631 /* CoverFlowViewController.swift */,
+				1EC8082F2ACA10FD009B38A5 /* PlayerViewController_CoverFlowView.swift */,
 				1E78E5112AC7111500444631 /* CoverFlowViewLayout.swift */,
 			);
 			path = PlayerViewController;
@@ -268,6 +268,7 @@
 				1E78E4F92AC59C8900444631 /* Song.swift in Sources */,
 				1E78E50A2AC67B1A00444631 /* TabViewButton.swift in Sources */,
 				1E78E4F72AC59C4E00444631 /* Results.swift in Sources */,
+				1EC808302ACA10FD009B38A5 /* PlayerViewController_CoverFlowView.swift in Sources */,
 				1E78E4F42AC59BE800444631 /* SongsListTableViewController.swift in Sources */,
 				1E78E4E12AC5995000444631 /* ViewController.swift in Sources */,
 				1E78E4FB2AC5A06F00444631 /* UIView_Ext.swift in Sources */,
@@ -283,7 +284,6 @@
 				1EACACA82AC8754300E4B3F0 /* MinimizedPlayerView.swift in Sources */,
 				1E78E5042AC5B5FE00444631 /* TopTracksTableViewController.swift in Sources */,
 				1E78E4DF2AC5995000444631 /* SceneDelegate.swift in Sources */,
-				1E78E50E2AC6A13400444631 /* CoverFlowViewController.swift in Sources */,
 				1E78E50C2AC69E3400444631 /* PlayerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
