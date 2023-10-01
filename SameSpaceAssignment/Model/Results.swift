@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct Result: Decodable {
+struct Results: Decodable {
     let data: [Song]
 }

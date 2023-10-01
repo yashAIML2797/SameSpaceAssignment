@@ -89,7 +89,7 @@ class CoverFlowViewController: UICollectionViewController, UICollectionViewDeleg
                 let song = parent.songs[layout.currentItemIdex]
                 parent.currentPlayingSong = song
                 parent.configure(with: song)
-                parent.play()
+                parent.start()
             }
         }
     }

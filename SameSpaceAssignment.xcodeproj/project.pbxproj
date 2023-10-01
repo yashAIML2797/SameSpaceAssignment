@@ -33,6 +33,7 @@
 		1EACACA82AC8754300E4B3F0 /* MinimizedPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EACACA72AC8754300E4B3F0 /* MinimizedPlayerView.swift */; };
 		1EC808202AC90C09009B38A5 /* LaunchPlayerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC8081F2AC90C09009B38A5 /* LaunchPlayerDelegate.swift */; };
 		1EC808222AC90CA5009B38A5 /* TabViewController_LaunchPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC808212AC90CA5009B38A5 /* TabViewController_LaunchPlayer.swift */; };
+		1EC8082C2AC9842A009B38A5 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC8082B2AC9842A009B38A5 /* AudioManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		1EACACA72AC8754300E4B3F0 /* MinimizedPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinimizedPlayerView.swift; sourceTree = "<group>"; };
 		1EC8081F2AC90C09009B38A5 /* LaunchPlayerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchPlayerDelegate.swift; sourceTree = "<group>"; };
 		1EC808212AC90CA5009B38A5 /* TabViewController_LaunchPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController_LaunchPlayer.swift; sourceTree = "<group>"; };
+		1EC8082B2AC9842A009B38A5 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 		1E78E4DB2AC5995000444631 /* SameSpaceAssignment */ = {
 			isa = PBXGroup;
 			children = (
+				1EC8082B2AC9842A009B38A5 /* AudioManager.swift */,
 				1EC8081E2AC90BED009B38A5 /* Delegates */,
 				1EAC148B2AC7373E0095FC38 /* Extensions */,
 				1E78E4FE2AC5A22A00444631 /* Views */,
@@ -272,6 +275,7 @@
 				1E78E4F12AC5996700444631 /* APIService.swift in Sources */,
 				1E78E5022AC5B58B00444631 /* TabViewController.swift in Sources */,
 				1EC808222AC90CA5009B38A5 /* TabViewController_LaunchPlayer.swift in Sources */,
+				1EC8082C2AC9842A009B38A5 /* AudioManager.swift in Sources */,
 				1EACACA82AC8754300E4B3F0 /* MinimizedPlayerView.swift in Sources */,
 				1E78E5042AC5B5FE00444631 /* TopTracksTableViewController.swift in Sources */,
 				1E78E4DF2AC5995000444631 /* SceneDelegate.swift in Sources */,

@@ -20,8 +20,6 @@ class PlayerViewController: UIViewController {
     }
     var songs: [Song] = []
     var swipeDownToCloseGesture: UIPanGestureRecognizer!
-    var avPlayer: AVQueuePlayer?
-    var timeObserver: Any?
     
     let nameLable: UILabel = {
         let label = UILabel()
@@ -62,7 +60,7 @@ class PlayerViewController: UIViewController {
         return label
     }()
     
-    let playButton: UIButton = {
+    let playPlauseButton: UIButton = {
         let button = UIButton()
         let config = UIImage.SymbolConfiguration(pointSize: 64)
         button.setImage(UIImage(systemName: "play.circle.fill", withConfiguration: config), for: .normal)
@@ -150,34 +148,34 @@ class PlayerViewController: UIViewController {
             inset: .init(top: 12, left: 0, bottom: 0, right: 20)
         )
         
-        view.addSubview(playButton)
-        playButton.anchor(
+        view.addSubview(playPlauseButton)
+        playPlauseButton.anchor(
             top: progressView.bottomAnchor,
             width: 64,
             height: 64,
             inset: .init(top: 60, left: 0, bottom: 0, right: 0)
         )
-        playButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        playPlauseButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
         view.addSubview(nextButton)
         nextButton.anchor(
-            leading: playButton.trailingAnchor,
+            leading: playPlauseButton.trailingAnchor,
             width: 44,
             height: 44,
             inset: .init(top: 0, left: 48, bottom: 0, right: 0)
         )
-        nextButton.centerYAnchor.constraint(equalTo: playButton.centerYAnchor).isActive = true
+        nextButton.centerYAnchor.constraint(equalTo: playPlauseButton.centerYAnchor).isActive = true
         
         view.addSubview(previousButton)
         previousButton.anchor(
-            trailing: playButton.leadingAnchor,
+            trailing: playPlauseButton.leadingAnchor,
             width: 44,
             height: 44,
             inset: .init(top: 0, left: 0, bottom: 0, right: 48)
         )
-        previousButton.centerYAnchor.constraint(equalTo: playButton.centerYAnchor).isActive = true
+        previousButton.centerYAnchor.constraint(equalTo: playPlauseButton.centerYAnchor).isActive = true
         
-        playButton.addTarget(self, action: #selector(handlePlayButtonAction), for: .touchUpInside)
+        playPlauseButton.addTarget(self, action: #selector(handlePlayPauseButtonAction), for: .touchUpInside)
         nextButton.addTarget(self, action: #selector(handleNextButtonAction), for: .touchUpInside)
         previousButton.addTarget(self, action: #selector(handlePreviousButtonAction), for: .touchUpInside)
     }
@@ -185,6 +183,10 @@ class PlayerViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         backgroundGradient.frame = view.bounds
+    }
+    
+    deinit {
+        print("deallocated")
     }
     
     func configure(with song: Song) {
@@ -195,15 +197,15 @@ class PlayerViewController: UIViewController {
         artistLable.text = song.artist
     }
     
-    @objc func handlePlayButtonAction(sender: UIButton) {
+    @objc func handlePlayPauseButtonAction(sender: UIButton) {
         let config = UIImage.SymbolConfiguration(pointSize: 64)
         
-        if avPlayer?.timeControlStatus == .playing {
-            avPlayer?.pause()
-            playButton.setImage(UIImage(systemName: "play.circle.fill", withConfiguration: config), for: .normal)
+        if AudioManager.shared.isPlaying {
+            AudioManager.shared.pause()
+            playPlauseButton.setImage(UIImage(systemName: "play.circle.fill", withConfiguration: config), for: .normal)
         } else {
-            avPlayer?.play()
-            playButton.setImage(UIImage(systemName: "pause.circle.fill", withConfiguration: config), for: .normal)
+            AudioManager.shared.play()
+            playPlauseButton.setImage(UIImage(systemName: "pause.circle.fill", withConfiguration: config), for: .normal)
         }
     }
     
@@ -222,15 +224,15 @@ class PlayerViewController: UIViewController {
             self.configure(with: song)
         }
         
-        play()
+        start()
     }
     
     @objc func handlePreviousButtonAction(sender: UIButton) {
         
-        guard (avPlayer?.currentTime().seconds ?? 0) <= 3 else {
-            avPlayer?.pause()
-            avPlayer?.seek(to: .zero)
-            avPlayer?.play()
+        guard AudioManager.shared.currentTime <= 3 else {
+            AudioManager.shared.pause()
+            AudioManager.shared.restart()
+            AudioManager.shared.play()
             return
         }
         
@@ -249,7 +251,7 @@ class PlayerViewController: UIViewController {
             self.configure(with: song)
         }
         
-        play()
+        start()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -258,104 +260,55 @@ class PlayerViewController: UIViewController {
     }
     
     func start() {
+        resetViews()
+        AudioManager.shared.stop()
         if let song = currentPlayingSong {
             if let url = URL(string: song.url) {
-                let item = AVPlayerItem(url: url)
-                avPlayer = AVQueuePlayer(playerItem: item)
-                avPlayer?.play()
-
-                Task {
-                    let duration = try await item.asset.load(.duration)
-                    let config = UIImage.SymbolConfiguration(pointSize: 64)
-                    playButton.setImage(UIImage(systemName: "pause.circle.fill", withConfiguration: config), for: .normal)
-
-                    let minutes = duration.seconds / 60
-                    let seconds = duration.seconds.truncatingRemainder(dividingBy: 60)
-                    
-                    let timeformatter = NumberFormatter()
-                    timeformatter.minimumIntegerDigits = 2
-                    timeformatter.minimumFractionDigits = 0
-                    timeformatter.roundingMode = .down
-
-                    if let minStr = timeformatter.string(from: NSNumber(value: minutes)),
-                       let secStr = timeformatter.string(from: NSNumber(value: seconds)) {
-                        self.currentTimeLabel.text = "00:00"
-                        self.overallTimeLabel.text = "\(minStr):\(secStr)"
-                    }
-                    
-                    timeObserver = avPlayer?.addPeriodicTimeObserver(forInterval: CMTime.init(value: 1, timescale: 1), queue: .main, using: { time in
-                        print(time.seconds)
-                        let progress = time.seconds / duration.seconds
-                        self.progressView.progress = Float(progress)
+                AudioManager.shared.start(itemURL: url)
+                
+                if let asset = AudioManager.shared.currentAsset {
+                    Task {
+                        let duration = try await asset.load(.duration)
+                        let timeformatter = NumberFormatter()
+                        timeformatter.minimumIntegerDigits = 2
+                        timeformatter.minimumFractionDigits = 0
+                        timeformatter.roundingMode = .down
                         
-                        let minutes = time.seconds / 60
-                        let seconds = time.seconds.truncatingRemainder(dividingBy: 60)
+                        let minutes = duration.seconds / 60
+                        let seconds = duration.seconds.truncatingRemainder(dividingBy: 60)
                         
                         if let minStr = timeformatter.string(from: NSNumber(value: minutes)),
                            let secStr = timeformatter.string(from: NSNumber(value: seconds)) {
-                            self.currentTimeLabel.text = "\(minStr):\(secStr)"
+                            self.currentTimeLabel.text = "00:00"
+                            self.overallTimeLabel.text = "\(minStr):\(secStr)"
+                            let config = UIImage.SymbolConfiguration(pointSize: 64)
+                            self.playPlauseButton.setImage(UIImage(systemName: "pause.circle.fill", withConfiguration: config), for: .normal)
                         }
-                    })
+                        
+                        AudioManager.shared.addTimeObserver { [weak self] currentTime in
+                            print(currentTime)
+                            let progress = currentTime / duration.seconds
+                            self?.progressView.progress = Float(progress)
+
+                            let minutes = currentTime / 60
+                            let seconds = currentTime.truncatingRemainder(dividingBy: 60)
+
+                            if let minStr = timeformatter.string(from: NSNumber(value: minutes)),
+                               let secStr = timeformatter.string(from: NSNumber(value: seconds)) {
+                                self?.currentTimeLabel.text = "\(minStr):\(secStr)"
+                            }
+                        }
+                    }
                 }
             }
         }
     }
     
-    func play() {
+    func resetViews() {
+        self.progressView.progress = 0
+        self.currentTimeLabel.text = "-:--"
+        self.overallTimeLabel.text = "-:--"
         let config = UIImage.SymbolConfiguration(pointSize: 64)
-        currentTimeLabel.text = "-:--"
-        overallTimeLabel.text = "-:--"
-        progressView.progress = 0.0
-
-        playButton.setImage(UIImage(systemName: "play.circle.fill", withConfiguration: config), for: .normal)
-        avPlayer?.pause()
-        avPlayer?.removeAllItems()
-        if let observer = timeObserver {
-            avPlayer?.removeTimeObserver(observer)
-        }
-        avPlayer = nil
-        
-        
-        if let song = currentPlayingSong {
-            if let url = URL(string: song.url) {
-                let item = AVPlayerItem(url: url)
-                avPlayer = AVQueuePlayer(playerItem: item)
-                avPlayer?.play()
-
-                Task {
-                    let duration = try await item.asset.load(.duration)
-                    let config = UIImage.SymbolConfiguration(pointSize: 64)
-                    playButton.setImage(UIImage(systemName: "pause.circle.fill", withConfiguration: config), for: .normal)
-
-                    let minutes = duration.seconds / 60
-                    let seconds = duration.seconds.truncatingRemainder(dividingBy: 60)
-                    
-                    let timeformatter = NumberFormatter()
-                    timeformatter.minimumIntegerDigits = 2
-                    timeformatter.minimumFractionDigits = 0
-                    timeformatter.roundingMode = .down
-
-                    if let minStr = timeformatter.string(from: NSNumber(value: minutes)),
-                       let secStr = timeformatter.string(from: NSNumber(value: seconds)) {
-                        self.currentTimeLabel.text = "00:00"
-                        self.overallTimeLabel.text = "\(minStr):\(secStr)"
-                    }
-                    
-                    timeObserver = avPlayer?.addPeriodicTimeObserver(forInterval: CMTime.init(value: 1, timescale: 1), queue: .main, using: { time in
-                        print(time.seconds)
-                        let progress = time.seconds / duration.seconds
-                        self.progressView.progress = Float(progress)
-                        
-                        let minutes = time.seconds / 60
-                        let seconds = time.seconds.truncatingRemainder(dividingBy: 60)
-                        
-                        if let minStr = timeformatter.string(from: NSNumber(value: minutes)),
-                           let secStr = timeformatter.string(from: NSNumber(value: seconds)) {
-                            self.currentTimeLabel.text = "\(minStr):\(secStr)"
-                        }
-                    })
-                }
-            }
-        }
+        self.playPlauseButton.setImage(UIImage(systemName: "play.circle.fill", withConfiguration: config), for: .normal)
     }
 }

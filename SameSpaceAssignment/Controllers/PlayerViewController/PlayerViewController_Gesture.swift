@@ -26,10 +26,7 @@ extension PlayerViewController: UIGestureRecognizerDelegate {
             backgroundGradient.cornerRadius = 15
         case .ended, .cancelled:
             if (velocity.y / 1000) > 0.5 || translation.y > view.frame.height * 0.25 {
-                if let observer = timeObserver {
-                    self.avPlayer?.removeTimeObserver(observer)
-                    self.timeObserver = nil
-                }
+                AudioManager.shared.removeTimeObserver()
                 self.dismiss(animated: true)
             } else {
                 UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.5, options: [.curveEaseOut, .allowUserInteraction]) {

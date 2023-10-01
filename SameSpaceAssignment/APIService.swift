@@ -15,7 +15,7 @@ class APIService {
         
     }
     
-    func fetchMusicData(completion: @escaping (Result) -> Void) {
+    func fetchMusicData(completion: @escaping (Results) -> Void) {
         let urlString = "https://cms.samespace.com/items/songs"
         
         guard let url = URL(string: urlString) else {
@@ -29,7 +29,7 @@ class APIService {
             }
             
             if let data = data,
-               let result = try? JSONDecoder().decode(Result.self, from: data)
+               let result = try? JSONDecoder().decode(Results.self, from: data)
             {
                 completion(result)
             }
