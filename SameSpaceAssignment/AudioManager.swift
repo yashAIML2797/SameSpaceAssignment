@@ -30,6 +30,10 @@ final class AudioManager {
         player?.currentTime().seconds ?? .zero
     }
     
+    var duration: Double {
+        player?.currentItem?.duration.seconds ?? .zero
+    }
+    
     private init() {
         
     }

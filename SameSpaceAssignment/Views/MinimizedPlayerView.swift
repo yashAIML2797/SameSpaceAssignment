@@ -8,10 +8,21 @@
 import UIKit
 
 protocol MinimizedPlayerDelgate: NSObject {
-    func addMinimizedPlayer(for song: Song)
+    func addMinimizedPlayer(songs: [Song], for song: Song)
 }
 
 class MinimizedPlayerView: UIView {
+    weak var launchPlayerDelegate: LaunchPlayerDelegate?
+    
+    var currentPlayingSong: Song? {
+        didSet {
+            if let song = currentPlayingSong {
+                configure(with: song)
+            }
+        }
+    }
+    var songs: [Song] = []
+    
     let coverImageView: UIImageView = {
         let coverImageView = UIImageView()
         coverImageView.contentMode = .scaleAspectFill
@@ -39,6 +50,7 @@ class MinimizedPlayerView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
+        addGesture()
     }
     
     required init?(coder: NSCoder) {
@@ -106,6 +118,17 @@ class MinimizedPlayerView: UIView {
         } else {
             AudioManager.shared.play()
             playPauseButton.setImage(UIImage(systemName: "pause.circle.fill", withConfiguration: config), for: .normal)
+        }
+    }
+    
+    func addGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func handleTap(gesture: UITapGestureRecognizer) {
+        if let song = currentPlayingSong {
+            launchPlayerDelegate?.launchPlayer(with: songs, startingSong: song)
         }
     }
 }

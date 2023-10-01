@@ -178,6 +178,8 @@ class PlayerViewController: UIViewController {
         playPauseButton.addTarget(self, action: #selector(handlePlayPauseButtonAction), for: .touchUpInside)
         nextButton.addTarget(self, action: #selector(handleNextButtonAction), for: .touchUpInside)
         previousButton.addTarget(self, action: #selector(handlePreviousButtonAction), for: .touchUpInside)
+        
+        configurePlayer()
     }
     
     override func viewDidLayoutSubviews() {
@@ -199,6 +201,63 @@ class PlayerViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        start()
+        
+    }
+    
+    func configurePlayer() {
+        
+        if let url = (AudioManager.shared.currentAsset as? AVURLAsset)?.url, let song = currentPlayingSong, url.absoluteString == song.url {
+            
+            let timeformatter = NumberFormatter()
+            timeformatter.minimumIntegerDigits = 2
+            timeformatter.minimumFractionDigits = 0
+            timeformatter.roundingMode = .down
+
+            let minutes = AudioManager.shared.duration / 60
+            let seconds = AudioManager.shared.duration.truncatingRemainder(dividingBy: 60)
+
+            if let minStr = timeformatter.string(from: NSNumber(value: minutes)),
+               let secStr = timeformatter.string(from: NSNumber(value: seconds)) {
+                self.overallTimeLabel.text = "\(minStr):\(secStr)"
+            }
+            
+            AudioManager.shared.addTimeObserver { [weak self] currentTime in
+                
+                let progress = currentTime / AudioManager.shared.duration
+                self?.progressView.progress = Float(progress)
+
+                let minutes = currentTime / 60
+                let seconds = currentTime.truncatingRemainder(dividingBy: 60)
+
+                if let minStr = timeformatter.string(from: NSNumber(value: minutes)),
+                   let secStr = timeformatter.string(from: NSNumber(value: seconds)) {
+                    self?.currentTimeLabel.text = "\(minStr):\(secStr)"
+                }
+            }
+            
+            if AudioManager.shared.isPlaying {
+                let config = UIImage.SymbolConfiguration(pointSize: 64)
+                playPauseButton.setImage(UIImage(systemName: "pause.circle.fill", withConfiguration: config), for: .normal)
+            }
+            
+            if AudioManager.shared.isPaused {
+                let config = UIImage.SymbolConfiguration(pointSize: 64)
+                playPauseButton.setImage(UIImage(systemName: "play.circle.fill", withConfiguration: config), for: .normal)
+                
+                let progress = AudioManager.shared.currentTime / AudioManager.shared.duration
+                self.progressView.progress = Float(progress)
+
+                let minutes = AudioManager.shared.currentTime / 60
+                let seconds = AudioManager.shared.currentTime.truncatingRemainder(dividingBy: 60)
+
+                if let minStr = timeformatter.string(from: NSNumber(value: minutes)),
+                   let secStr = timeformatter.string(from: NSNumber(value: seconds)) {
+                    self.currentTimeLabel.text = "\(minStr):\(secStr)"
+                }
+            }
+            
+        } else {
+            start()
+        }
     }
 }
