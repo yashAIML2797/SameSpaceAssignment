@@ -31,6 +31,8 @@
 		1EAC148D2AC7374D0095FC38 /* UIColor_Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EAC148C2AC7374D0095FC38 /* UIColor_Ext.swift */; };
 		1EACACA62AC7CA1500E4B3F0 /* PlayerViewController_Gesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EACACA52AC7CA1500E4B3F0 /* PlayerViewController_Gesture.swift */; };
 		1EACACA82AC8754300E4B3F0 /* MinimizedPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EACACA72AC8754300E4B3F0 /* MinimizedPlayerView.swift */; };
+		1EC808202AC90C09009B38A5 /* LaunchPlayerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC8081F2AC90C09009B38A5 /* LaunchPlayerDelegate.swift */; };
+		1EC808222AC90CA5009B38A5 /* TabViewController_LaunchPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC808212AC90CA5009B38A5 /* TabViewController_LaunchPlayer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +62,8 @@
 		1EAC148C2AC7374D0095FC38 /* UIColor_Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor_Ext.swift; sourceTree = "<group>"; };
 		1EACACA52AC7CA1500E4B3F0 /* PlayerViewController_Gesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController_Gesture.swift; sourceTree = "<group>"; };
 		1EACACA72AC8754300E4B3F0 /* MinimizedPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinimizedPlayerView.swift; sourceTree = "<group>"; };
+		1EC8081F2AC90C09009B38A5 /* LaunchPlayerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchPlayerDelegate.swift; sourceTree = "<group>"; };
+		1EC808212AC90CA5009B38A5 /* TabViewController_LaunchPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController_LaunchPlayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +96,7 @@
 		1E78E4DB2AC5995000444631 /* SameSpaceAssignment */ = {
 			isa = PBXGroup;
 			children = (
+				1EC8081E2AC90BED009B38A5 /* Delegates */,
 				1EAC148B2AC7373E0095FC38 /* Extensions */,
 				1E78E4FE2AC5A22A00444631 /* Views */,
 				1E78E4F52AC59C4000444631 /* Model */,
@@ -146,6 +151,7 @@
 			children = (
 				1E78E5012AC5B58B00444631 /* TabViewController.swift */,
 				1E78E5052AC5BAD800444631 /* TabViewController_Gestures.swift */,
+				1EC808212AC90CA5009B38A5 /* TabViewController_LaunchPlayer.swift */,
 			);
 			path = TabViewController;
 			sourceTree = "<group>";
@@ -167,6 +173,14 @@
 				1EAC148C2AC7374D0095FC38 /* UIColor_Ext.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		1EC8081E2AC90BED009B38A5 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				1EC8081F2AC90C09009B38A5 /* LaunchPlayerDelegate.swift */,
+			);
+			path = Delegates;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -250,12 +264,14 @@
 				1E78E4F42AC59BE800444631 /* SongsListTableViewController.swift in Sources */,
 				1E78E4E12AC5995000444631 /* ViewController.swift in Sources */,
 				1E78E4FB2AC5A06F00444631 /* UIView_Ext.swift in Sources */,
+				1EC808202AC90C09009B38A5 /* LaunchPlayerDelegate.swift in Sources */,
 				1E78E5122AC7111500444631 /* CoverFlowViewLayout.swift in Sources */,
 				1E78E4DD2AC5995000444631 /* AppDelegate.swift in Sources */,
 				1E78E5142AC7116A00444631 /* CoverFlowCell.swift in Sources */,
 				1EAC148D2AC7374D0095FC38 /* UIColor_Ext.swift in Sources */,
 				1E78E4F12AC5996700444631 /* APIService.swift in Sources */,
 				1E78E5022AC5B58B00444631 /* TabViewController.swift in Sources */,
+				1EC808222AC90CA5009B38A5 /* TabViewController_LaunchPlayer.swift in Sources */,
 				1EACACA82AC8754300E4B3F0 /* MinimizedPlayerView.swift in Sources */,
 				1E78E5042AC5B5FE00444631 /* TopTracksTableViewController.swift in Sources */,
 				1E78E4DF2AC5995000444631 /* SceneDelegate.swift in Sources */,

@@ -44,7 +44,9 @@ class TabViewController: UIViewController {
         view.backgroundColor = .black
         
         let songsListTableViewController = SongsListTableViewController(style: .plain)
+        songsListTableViewController.delegate = self
         let topTracksTableViewController = TopTracksTableViewController(style: .plain)
+        topTracksTableViewController.delegate = self
         
         songsListView = songsListTableViewController.view!
         topTracksView = topTracksTableViewController.view!

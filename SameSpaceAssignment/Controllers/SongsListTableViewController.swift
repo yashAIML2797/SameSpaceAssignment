@@ -7,7 +7,8 @@
 
 import UIKit
 
-class SongsListTableViewController: UITableViewController, PlayerViewControllerDelegate {
+class SongsListTableViewController: UITableViewController {
+    weak var delegate: LaunchPlayerDelegate?
     
     var songs: [Song] = []
     let cellID = "cellID"
@@ -46,19 +47,6 @@ class SongsListTableViewController: UITableViewController, PlayerViewControllerD
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let song = songs[indexPath.item]
-        launchPlayer(with: song)
-    }
-    
-    func launchPlayer(with song: Song) {
-        let playerController = PlayerViewController()
-        playerController.delegate = self
-        playerController.configure(with: song)
-        playerController.currentPlayingSong = song
-        
-        if let parent = parent as? TabViewController {
-            playerController.modalPresentationStyle = .custom
-            parent.present(playerController, animated: true)
-            parent.addMinimizedPlayer(for: song)
-        }
+        delegate?.launchPlayer(with: songs, startingSong: song)
     }
 }

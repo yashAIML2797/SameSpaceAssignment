@@ -8,21 +8,16 @@
 import UIKit
 import AVFoundation
 
-protocol PlayerViewControllerDelegate: NSObject {
-    var songs: [Song] {get set}
-    
-    func launchPlayer(with song: Song)
-}
-
 class PlayerViewController: UIViewController {
     
     var coverFlowController: CoverFlowViewController!
-    weak var delegate: PlayerViewControllerDelegate? {
+    var currentPlayingSong: Song? {
         didSet {
-            self.songs = delegate?.songs ?? []
+            if let song = currentPlayingSong {
+                configure(with: song)
+            }
         }
     }
-    var currentPlayingSong: Song?
     var songs: [Song] = []
     var swipeDownToCloseGesture: UIPanGestureRecognizer!
     var avPlayer: AVQueuePlayer?
