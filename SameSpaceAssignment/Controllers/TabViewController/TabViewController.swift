@@ -13,6 +13,8 @@ class TabViewController: UIViewController, MinimizedPlayerDelgate {
     var songsListView: UIView!
     var topTracksView: UIView!
     
+    var isShowingMinimizedPlayer = false
+    
     let minimizedPlayer: MinimizedPlayerView = {
         let view = MinimizedPlayerView()
         return view
@@ -90,17 +92,23 @@ class TabViewController: UIViewController, MinimizedPlayerDelgate {
     }
     
     func addMinimizedPlayer(songs: [Song], for song: Song) {
-        minimizedPlayer.removeFromSuperview()
-        view.addSubview(minimizedPlayer)
-        minimizedPlayer.anchor(
-            leading:    view.leadingAnchor,
-            trailing:   view.trailingAnchor,
-            bottom:     tabView.topAnchor,
-            height:     64
-        )
-        minimizedPlayer.launchPlayerDelegate = self
-        minimizedPlayer.songs = songs
-        minimizedPlayer.currentPlayingSong = song
-        tabView.removeMask()
+        if isShowingMinimizedPlayer {
+            minimizedPlayer.songs = songs
+            minimizedPlayer.currentPlayingSong = song
+        } else {
+            view.addSubview(minimizedPlayer)
+            minimizedPlayer.anchor(
+                leading:    view.leadingAnchor,
+                trailing:   view.trailingAnchor,
+                bottom:     tabView.topAnchor,
+                height:     64
+            )
+            minimizedPlayer.launchPlayerDelegate = self
+            tabView.removeMask()
+            isShowingMinimizedPlayer = true
+            
+            minimizedPlayer.songs = songs
+            minimizedPlayer.currentPlayingSong = song
+        }
     }
 }

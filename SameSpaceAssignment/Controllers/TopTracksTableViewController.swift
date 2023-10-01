@@ -17,7 +17,7 @@ class TopTracksTableViewController: UITableViewController {
         super.viewDidLoad()
         tableView.separatorStyle = .none
         tableView.backgroundColor = .black
-        tableView.contentInset.bottom = 120
+        tableView.contentInset.bottom = 120 + 64
         tableView.register(SongsListTableViewCell.self, forCellReuseIdentifier: cellID)
         
         APIService.shared.fetchMusicData { result in
@@ -46,7 +46,20 @@ class TopTracksTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let delegate = delegate else {
+            return
+        }
+        
         let song = songs[indexPath.item]
-        delegate?.launchPlayer(with: songs, startingSong: song)
+        
+        if delegate.isShowingMinimizedPlayer {
+            AudioManager.shared.stop()
+            if let url = URL(string: song.url) {
+                AudioManager.shared.start(itemURL: url)
+            }
+            delegate.addMinimizedPlayer(songs: songs, for: song)
+        } else {
+            delegate.launchPlayer(with: songs, startingSong: song)
+        }
     }
 }
