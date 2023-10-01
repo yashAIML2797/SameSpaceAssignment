@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol MinimizedPlayerDelgate: NSObject {
+    func addMinimizedPlayer(for song: Song)
+}
+
 class MinimizedPlayerView: UIView {
     let coverImageView: UIImageView = {
         let coverImageView = UIImageView()
@@ -24,10 +28,10 @@ class MinimizedPlayerView: UIView {
         return label
     }()
     
-    let playButton: UIButton = {
+    let playPauseButton: UIButton = {
         let button = UIButton()
         let config = UIImage.SymbolConfiguration(pointSize: 32)
-        button.setImage(UIImage(systemName: "play.circle.fill", withConfiguration: config), for: .normal)
+        button.setImage(UIImage(systemName: "pause.circle.fill", withConfiguration: config), for: .normal)
         button.tintColor = .white
         return button
     }()
@@ -61,14 +65,16 @@ class MinimizedPlayerView: UIView {
         )
         nameLable.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
-        addSubview(playButton)
-        playButton.anchor(
+        addSubview(playPauseButton)
+        playPauseButton.anchor(
             trailing:    trailingAnchor,
             width:       44,
             height:      44,
             inset:      .init(top: 0, left: 0, bottom: 0, right: 16)
         )
-        playButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        playPauseButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        
+        playPauseButton.addTarget(self, action: #selector(handlePlayPauseButtonAction), for: .touchUpInside)
     }
     
     func configure(with song: Song) {
@@ -80,6 +86,26 @@ class MinimizedPlayerView: UIView {
             DispatchQueue.main.async {
                 self.coverImageView.image = image
             }
+        }
+        
+        
+        let config = UIImage.SymbolConfiguration(pointSize: 32)
+        if AudioManager.shared.isPaused {
+            playPauseButton.setImage(UIImage(systemName: "play.circle.fill", withConfiguration: config), for: .normal)
+        } else {
+            playPauseButton.setImage(UIImage(systemName: "pause.circle.fill", withConfiguration: config), for: .normal)
+        }
+    }
+    
+    @objc func handlePlayPauseButtonAction(sender: UIButton) {
+        let config = UIImage.SymbolConfiguration(pointSize: 32)
+        
+        if AudioManager.shared.isPlaying {
+            AudioManager.shared.pause()
+            playPauseButton.setImage(UIImage(systemName: "play.circle.fill", withConfiguration: config), for: .normal)
+        } else {
+            AudioManager.shared.play()
+            playPauseButton.setImage(UIImage(systemName: "pause.circle.fill", withConfiguration: config), for: .normal)
         }
     }
 }

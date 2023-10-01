@@ -27,6 +27,9 @@ extension PlayerViewController: UIGestureRecognizerDelegate {
         case .ended, .cancelled:
             if (velocity.y / 1000) > 0.5 || translation.y > view.frame.height * 0.25 {
                 AudioManager.shared.removeTimeObserver()
+                if let song = currentPlayingSong {
+                    minimizedPlayerDelgate?.addMinimizedPlayer(for: song)
+                }
                 self.dismiss(animated: true)
             } else {
                 UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.5, options: [.curveEaseOut, .allowUserInteraction]) {

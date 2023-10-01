@@ -39,6 +39,20 @@ class TabView: UIView {
         return view
     }()
     
+    let gradientMaskLayer: CAGradientLayer = {
+        let layer = CAGradientLayer()
+        layer.colors = [
+            UIColor.black.withAlphaComponent(0).cgColor,
+            UIColor.black.withAlphaComponent(0.25).cgColor,
+            UIColor.black.withAlphaComponent(0.5).cgColor,
+            UIColor.black.cgColor
+        ]
+        layer.startPoint = .init(x: 0.5, y: 0)
+        layer.endPoint = .init(x: 0.5, y: 1)
+        layer.locations = [0, 0.0625, 0.125, 0.25]
+        return layer
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
@@ -50,25 +64,13 @@ class TabView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
-        let gradientMask = CAGradientLayer()
-        gradientMask.frame = gradientMaskView.bounds
-        gradientMask.colors = [
-            UIColor.black.withAlphaComponent(0).cgColor,
-            UIColor.black.withAlphaComponent(0.25).cgColor,
-            UIColor.black.withAlphaComponent(0.5).cgColor,
-            UIColor.black.cgColor
-        ]
-        gradientMask.startPoint = .init(x: 0.5, y: 0)
-        gradientMask.endPoint = .init(x: 0.5, y: 1)
-        gradientMask.locations = [0, 0.0625, 0.125, 0.25]
-        
-        gradientMaskView.layer.mask = gradientMask
+        gradientMaskLayer.frame = gradientMaskView.bounds
     }
     
     private func setupViews() {
         addSubview(gradientMaskView)
         gradientMaskView.fillInSuperview()
+        gradientMaskView.layer.mask = gradientMaskLayer
         
         addSubview(stackView)
         stackView.anchor(
@@ -115,5 +117,9 @@ class TabView: UIView {
                 topTracksButton.deselectButton()
             }
         }
+    }
+    
+    func removeMask() {
+        gradientMaskView.layer.mask = nil
     }
 }

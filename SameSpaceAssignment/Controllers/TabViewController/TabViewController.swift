@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TabViewController: UIViewController {
+class TabViewController: UIViewController, MinimizedPlayerDelgate {
     
     var swipeGesture: UIPanGestureRecognizer!
     var songsListView: UIView!
@@ -90,6 +90,7 @@ class TabViewController: UIViewController {
     }
     
     func addMinimizedPlayer(for song: Song) {
+        minimizedPlayer.removeFromSuperview()
         view.addSubview(minimizedPlayer)
         minimizedPlayer.anchor(
             leading:    view.leadingAnchor,
@@ -98,5 +99,6 @@ class TabViewController: UIViewController {
             height:     64
         )
         minimizedPlayer.configure(with: song)
+        tabView.removeMask()
     }
 }

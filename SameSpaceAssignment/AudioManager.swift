@@ -18,6 +18,10 @@ final class AudioManager {
         player?.timeControlStatus == .playing
     }
     
+    var isPaused: Bool {
+        player?.timeControlStatus == .paused
+    }
+    
     var currentAsset: AVAsset? {
         player?.currentItem?.asset
     }

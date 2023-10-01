@@ -11,6 +11,7 @@ extension TabViewController: LaunchPlayerDelegate {
     func launchPlayer(with songs: [Song], startingSong: Song) {
         
         let playerController = PlayerViewController()
+        playerController.minimizedPlayerDelgate = self
         playerController.songs = songs
         playerController.currentPlayingSong = startingSong
         

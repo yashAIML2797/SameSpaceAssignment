@@ -34,6 +34,7 @@
 		1EC808202AC90C09009B38A5 /* LaunchPlayerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC8081F2AC90C09009B38A5 /* LaunchPlayerDelegate.swift */; };
 		1EC808222AC90CA5009B38A5 /* TabViewController_LaunchPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC808212AC90CA5009B38A5 /* TabViewController_LaunchPlayer.swift */; };
 		1EC8082C2AC9842A009B38A5 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC8082B2AC9842A009B38A5 /* AudioManager.swift */; };
+		1EC8082E2AC9E794009B38A5 /* PlayerViewController_PlaybackControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC8082D2AC9E794009B38A5 /* PlayerViewController_PlaybackControls.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,7 @@
 		1EC8081F2AC90C09009B38A5 /* LaunchPlayerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchPlayerDelegate.swift; sourceTree = "<group>"; };
 		1EC808212AC90CA5009B38A5 /* TabViewController_LaunchPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController_LaunchPlayer.swift; sourceTree = "<group>"; };
 		1EC8082B2AC9842A009B38A5 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
+		1EC8082D2AC9E794009B38A5 /* PlayerViewController_PlaybackControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController_PlaybackControls.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +166,7 @@
 			children = (
 				1E78E50B2AC69E3400444631 /* PlayerViewController.swift */,
 				1EACACA52AC7CA1500E4B3F0 /* PlayerViewController_Gesture.swift */,
+				1EC8082D2AC9E794009B38A5 /* PlayerViewController_PlaybackControls.swift */,
 				1E78E50D2AC6A13400444631 /* CoverFlowViewController.swift */,
 				1E78E5112AC7111500444631 /* CoverFlowViewLayout.swift */,
 			);
@@ -258,6 +261,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E78E5062AC5BAD800444631 /* TabViewController_Gestures.swift in Sources */,
+				1EC8082E2AC9E794009B38A5 /* PlayerViewController_PlaybackControls.swift in Sources */,
 				1E78E5002AC5A23F00444631 /* SongsListTableViewCell.swift in Sources */,
 				1E78E5082AC675FA00444631 /* TabView.swift in Sources */,
 				1EACACA62AC7CA1500E4B3F0 /* PlayerViewController_Gesture.swift in Sources */,
