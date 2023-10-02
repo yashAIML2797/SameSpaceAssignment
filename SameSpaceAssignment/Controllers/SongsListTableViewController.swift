@@ -10,7 +10,13 @@ import UIKit
 class SongsListTableViewController: UITableViewController {
     weak var delegate: LaunchPlayerDelegate?
     
-    var songs: [Song] = []
+    var songs: [Song] = [] {
+        didSet {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
     let cellID = "cellID"
     
     override func viewDidLoad() {
@@ -19,13 +25,6 @@ class SongsListTableViewController: UITableViewController {
         tableView.backgroundColor = .black
         tableView.contentInset.bottom = 120 + 64
         tableView.register(SongsListTableViewCell.self, forCellReuseIdentifier: cellID)
-        
-        APIService.shared.fetchMusicData { result in
-            self.songs = result.data
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

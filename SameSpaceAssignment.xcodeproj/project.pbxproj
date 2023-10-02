@@ -20,7 +20,6 @@
 		1E78E4FB2AC5A06F00444631 /* UIView_Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E78E4FA2AC5A06F00444631 /* UIView_Ext.swift */; };
 		1E78E5002AC5A23F00444631 /* SongsListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E78E4FF2AC5A23F00444631 /* SongsListTableViewCell.swift */; };
 		1E78E5022AC5B58B00444631 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E78E5012AC5B58B00444631 /* TabViewController.swift */; };
-		1E78E5042AC5B5FE00444631 /* TopTracksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E78E5032AC5B5FE00444631 /* TopTracksTableViewController.swift */; };
 		1E78E5062AC5BAD800444631 /* TabViewController_Gestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E78E5052AC5BAD800444631 /* TabViewController_Gestures.swift */; };
 		1E78E5082AC675FA00444631 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E78E5072AC675FA00444631 /* TabView.swift */; };
 		1E78E50A2AC67B1A00444631 /* TabViewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E78E5092AC67B1A00444631 /* TabViewButton.swift */; };
@@ -53,7 +52,6 @@
 		1E78E4FA2AC5A06F00444631 /* UIView_Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView_Ext.swift; sourceTree = "<group>"; };
 		1E78E4FF2AC5A23F00444631 /* SongsListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsListTableViewCell.swift; sourceTree = "<group>"; };
 		1E78E5012AC5B58B00444631 /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
-		1E78E5032AC5B5FE00444631 /* TopTracksTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTracksTableViewController.swift; sourceTree = "<group>"; };
 		1E78E5052AC5BAD800444631 /* TabViewController_Gestures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController_Gestures.swift; sourceTree = "<group>"; };
 		1E78E5072AC675FA00444631 /* TabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
 		1E78E5092AC67B1A00444631 /* TabViewButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewButton.swift; sourceTree = "<group>"; };
@@ -125,7 +123,6 @@
 				1E78E5102AC710EF00444631 /* PlayerViewController */,
 				1E78E50F2AC710D500444631 /* TabViewController */,
 				1E78E4F32AC59BE800444631 /* SongsListTableViewController.swift */,
-				1E78E5032AC5B5FE00444631 /* TopTracksTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -282,7 +279,6 @@
 				1EC808222AC90CA5009B38A5 /* TabViewController_LaunchPlayer.swift in Sources */,
 				1EC8082C2AC9842A009B38A5 /* AudioManager.swift in Sources */,
 				1EACACA82AC8754300E4B3F0 /* MinimizedPlayerView.swift in Sources */,
-				1E78E5042AC5B5FE00444631 /* TopTracksTableViewController.swift in Sources */,
 				1E78E4DF2AC5995000444631 /* SceneDelegate.swift in Sources */,
 				1E78E50C2AC69E3400444631 /* PlayerViewController.swift in Sources */,
 			);

@@ -10,8 +10,6 @@ import UIKit
 class TabViewController: UIViewController, MinimizedPlayerDelgate {
     
     var swipeGesture: UIPanGestureRecognizer!
-    var songsListView: UIView!
-    var topTracksView: UIView!
     
     var isShowingMinimizedPlayer = false
     
@@ -47,11 +45,11 @@ class TabViewController: UIViewController, MinimizedPlayerDelgate {
         
         let songsListTableViewController = SongsListTableViewController(style: .plain)
         songsListTableViewController.delegate = self
-        let topTracksTableViewController = TopTracksTableViewController(style: .plain)
-        topTracksTableViewController.delegate = self
+        let songsListView = songsListTableViewController.view!
         
-        songsListView = songsListTableViewController.view!
-        topTracksView = topTracksTableViewController.view!
+        let topTracksTableViewController = SongsListTableViewController(style: .plain)
+        topTracksTableViewController.delegate = self
+        let topTracksView = topTracksTableViewController.view!
         
         view.addSubview(containerView)
         containerView.anchor(
@@ -89,6 +87,11 @@ class TabViewController: UIViewController, MinimizedPlayerDelgate {
             bottom:     view.bottomAnchor,
             height:     120
         )
+        
+        APIService.shared.fetchMusicData { result in
+            songsListTableViewController.songs = result.data
+            topTracksTableViewController.songs = result.data.filter {$0.top_track}
+        }
     }
     
     func addMinimizedPlayer(songs: [Song], for song: Song) {
