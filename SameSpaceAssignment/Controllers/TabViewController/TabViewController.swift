@@ -93,25 +93,4 @@ class TabViewController: UIViewController, MinimizedPlayerDelgate {
             topTracksTableViewController.songs = result.data.filter {$0.top_track}
         }
     }
-    
-    func addMinimizedPlayer(songs: [Song], for song: Song) {
-        if isShowingMinimizedPlayer {
-            minimizedPlayer.songs = songs
-            minimizedPlayer.currentPlayingSong = song
-        } else {
-            view.addSubview(minimizedPlayer)
-            minimizedPlayer.anchor(
-                leading:    view.leadingAnchor,
-                trailing:   view.trailingAnchor,
-                bottom:     tabView.topAnchor,
-                height:     64
-            )
-            minimizedPlayer.launchPlayerDelegate = self
-            tabView.removeMask()
-            isShowingMinimizedPlayer = true
-            
-            minimizedPlayer.songs = songs
-            minimizedPlayer.currentPlayingSong = song
-        }
-    }
 }

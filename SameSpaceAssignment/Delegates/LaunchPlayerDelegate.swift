@@ -9,6 +9,6 @@ import Foundation
 
 protocol LaunchPlayerDelegate: NSObject {
     var isShowingMinimizedPlayer: Bool {set get}
-    func launchPlayer(with songs: [Song], startingSong: Song)
-    func addMinimizedPlayer(songs: [Song], for song: Song)
+    func loadPlayer(with songs: [Song], startingAt song: Song)
+    func loadMinimizedPlayer(with songs: [Song], startingAt song: Song)
 }

@@ -8,7 +8,7 @@
 import UIKit
 
 protocol MinimizedPlayerDelgate: NSObject {
-    func addMinimizedPlayer(songs: [Song], for song: Song)
+    func loadMinimizedPlayer(with songs: [Song], startingAt song: Song)
 }
 
 class MinimizedPlayerView: UIView {
@@ -133,7 +133,7 @@ class MinimizedPlayerView: UIView {
     
     @objc func handleTap(gesture: UITapGestureRecognizer) {
         if let song = currentPlayingSong {
-            launchPlayerDelegate?.launchPlayer(with: songs, startingSong: song)
+            launchPlayerDelegate?.loadPlayer(with: songs, startingAt: song)
         }
     }
     

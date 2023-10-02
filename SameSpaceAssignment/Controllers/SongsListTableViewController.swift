@@ -56,9 +56,9 @@ class SongsListTableViewController: UITableViewController {
             if let url = URL(string: song.url) {
                 AudioManager.shared.start(itemURL: url)
             }
-            delegate.addMinimizedPlayer(songs: songs, for: song)
+            delegate.loadMinimizedPlayer(with: songs, startingAt: song)
         } else {
-            delegate.launchPlayer(with: songs, startingSong: song)
+            delegate.loadPlayer(with: songs, startingAt: song)
         }
     }
 }
