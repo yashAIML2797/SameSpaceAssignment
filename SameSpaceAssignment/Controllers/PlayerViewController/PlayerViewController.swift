@@ -113,13 +113,13 @@ class PlayerViewController: UIViewController {
         
         setupViews()
         setupGesture()
-        setupCoverFlowView()
         
         addNotificationObserver()
         configurePlayerOnLaunch()
     }
     
     private func setupViews() {
+        setupCoverFlowView()
         
         view.addSubview(nameLable)
         nameLable.translatesAutoresizingMaskIntoConstraints = false

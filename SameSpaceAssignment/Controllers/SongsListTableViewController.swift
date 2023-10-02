@@ -23,6 +23,7 @@ class SongsListTableViewController: UITableViewController {
         super.viewDidLoad()
         tableView.separatorStyle = .none
         tableView.backgroundColor = .black
+        tableView.contentInset.top = 20
         tableView.contentInset.bottom = 120 + 64
         tableView.register(SongsListTableViewCell.self, forCellReuseIdentifier: cellID)
     }

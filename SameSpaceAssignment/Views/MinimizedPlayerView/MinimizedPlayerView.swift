@@ -112,9 +112,11 @@ class MinimizedPlayerView: UIView {
         if AudioManager.shared.isPlaying {
             AudioManager.shared.pause()
             setButtonToPlay()
+            performHaptic()
         } else {
             AudioManager.shared.play()
             setButtonToPause()
+            performHaptic()
         }
     }
     
@@ -126,5 +128,10 @@ class MinimizedPlayerView: UIView {
     func setButtonToPause() {
         let config = UIImage.SymbolConfiguration(pointSize: 32)
         self.playPauseButton.setImage(UIImage(systemName: "pause.circle.fill", withConfiguration: config), for: .normal)
+    }
+    
+    func performHaptic() {
+        let generator = UINotificationFeedbackGenerator()
+        generator.notificationOccurred(.success)
     }
 }

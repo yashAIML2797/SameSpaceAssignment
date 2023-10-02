@@ -90,6 +90,7 @@ class TabView: UIView {
         if let isShowingSecondViewController = delegate?.isShowingSecondViewController {
             if isShowingSecondViewController {
                 delegate?.switchViewController()
+                performHaptic()
             }
         }
     }
@@ -98,6 +99,7 @@ class TabView: UIView {
         if let isShowingSecondViewController = delegate?.isShowingSecondViewController {
             if !isShowingSecondViewController {
                 delegate?.switchViewController()
+                performHaptic()
             }
         }
     }
@@ -116,5 +118,10 @@ class TabView: UIView {
     
     func removeMask() {
         gradientMaskView.layer.mask = nil
+    }
+    
+    func performHaptic() {
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+        generator.impactOccurred()
     }
 }

@@ -114,7 +114,7 @@
 		1E78E4DB2AC5995000444631 /* SameSpaceAssignment */ = {
 			isa = PBXGroup;
 			children = (
-				1EC8082B2AC9842A009B38A5 /* AudioManager.swift */,
+				1EC808452ACA98B1009B38A5 /* Service */,
 				1EC8081E2AC90BED009B38A5 /* Delegates */,
 				1EAC148B2AC7373E0095FC38 /* Extensions */,
 				1E78E4FE2AC5A22A00444631 /* Views */,
@@ -122,9 +122,7 @@
 				1E78E4F22AC59B9C00444631 /* Controllers */,
 				1E78E4DC2AC5995000444631 /* AppDelegate.swift */,
 				1E78E4DE2AC5995000444631 /* SceneDelegate.swift */,
-				1E78E4FA2AC5A06F00444631 /* UIView_Ext.swift */,
 				1E78E4E02AC5995000444631 /* ViewController.swift */,
-				1E78E4F02AC5996700444631 /* APIService.swift */,
 				1E78E4E22AC5995000444631 /* Main.storyboard */,
 				1E78E4E52AC5995100444631 /* Assets.xcassets */,
 				1E78E4E72AC5995100444631 /* LaunchScreen.storyboard */,
@@ -191,6 +189,7 @@
 		1EAC148B2AC7373E0095FC38 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				1E78E4FA2AC5A06F00444631 /* UIView_Ext.swift */,
 				1EAC148C2AC7374D0095FC38 /* UIColor_Ext.swift */,
 				1EC808332ACA7F61009B38A5 /* Double_Ext.swift */,
 				1EC808352ACA8094009B38A5 /* CMTime_Ext.swift */,
@@ -216,6 +215,15 @@
 				1EC8083E2ACA9278009B38A5 /* MinimizedPlayerView_Gesture.swift */,
 			);
 			path = MinimizedPlayerView;
+			sourceTree = "<group>";
+		};
+		1EC808452ACA98B1009B38A5 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				1E78E4F02AC5996700444631 /* APIService.swift */,
+				1EC8082B2AC9842A009B38A5 /* AudioManager.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

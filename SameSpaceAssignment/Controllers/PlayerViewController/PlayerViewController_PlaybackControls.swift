@@ -70,7 +70,6 @@ extension PlayerViewController {
                         }
                         
                         AudioManager.shared.addTimeObserver { [weak self] currentTime in
-                            print(currentTime)
                             let progress = Float(currentTime.seconds / duration.seconds)
                             if let minStr = currentTime.minStr,
                                let secStr = currentTime.secStr {
@@ -139,9 +138,11 @@ extension PlayerViewController {
         if AudioManager.shared.isPlaying {
             AudioManager.shared.pause()
             self.setButtonToPlay()
+            self.performHaptic()
         } else {
             AudioManager.shared.play()
             self.setButtonToPause()
+            self.performHaptic()
         }
     }
     
@@ -151,5 +152,10 @@ extension PlayerViewController {
     
     @objc func handlePreviousButtonAction(sender: UIButton) {
         moveToPreviousSong()
+    }
+    
+    func performHaptic() {
+        let generator = UINotificationFeedbackGenerator()
+        generator.notificationOccurred(.success)
     }
 }
