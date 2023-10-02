@@ -26,12 +26,12 @@ final class AudioManager {
         player?.currentItem?.asset
     }
     
-    var currentTime: Double {
-        player?.currentTime().seconds ?? .zero
+    var currentTime: CMTime {
+        player?.currentTime() ?? .zero
     }
     
-    var duration: Double {
-        player?.currentItem?.duration.seconds ?? .zero
+    var duration: CMTime {
+        player?.currentItem?.duration ?? .zero
     }
     
     private init() {
@@ -75,9 +75,9 @@ final class AudioManager {
         self.player = nil
     }
     
-    func addTimeObserver(completion: @escaping (Double) -> Void) {
+    func addTimeObserver(completion: @escaping (CMTime) -> Void) {
         timeObserver = player?.addPeriodicTimeObserver(forInterval: CMTime.init(value: 1, timescale: 1), queue: .main, using: { time in
-            completion(time.seconds)
+            completion(time)
         })
     }
     

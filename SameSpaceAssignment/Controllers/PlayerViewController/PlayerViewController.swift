@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import AVFoundation
 
 class PlayerViewController: UIViewController {
     weak var minimizedPlayerDelgate: MinimizedPlayerDelgate?
@@ -57,7 +56,7 @@ class PlayerViewController: UIViewController {
     
     let currentTimeLabel: UILabel = {
         let label = UILabel()
-        label.text = "-:-"
+        label.text = "-:--"
         label.textColor = .lightGray
         label.font = .systemFont(ofSize: 12, weight: .regular)
         return label
@@ -65,7 +64,7 @@ class PlayerViewController: UIViewController {
     
     let overallTimeLabel: UILabel = {
         let label = UILabel()
-        label.text = "-:-"
+        label.text = "-:--"
         label.textColor = .lightGray
         label.font = .systemFont(ofSize: 12, weight: .regular)
         return label
@@ -108,11 +107,19 @@ class PlayerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupGesture()
+        
         view.backgroundColor = .black
         view.layer.addSublayer(backgroundGradient)
         
+        setupViews()
+        setupGesture()
         setupCoverFlowView()
+        
+        addNotificationObserver()
+        configurePlayerOnLaunch()
+    }
+    
+    private func setupViews() {
         
         view.addSubview(nameLable)
         nameLable.translatesAutoresizingMaskIntoConstraints = false
@@ -176,10 +183,6 @@ class PlayerViewController: UIViewController {
         playPauseButton.addTarget(self, action: #selector(handlePlayPauseButtonAction), for: .touchUpInside)
         nextButton.addTarget(self, action: #selector(handleNextButtonAction), for: .touchUpInside)
         previousButton.addTarget(self, action: #selector(handlePreviousButtonAction), for: .touchUpInside)
-        
-        configurePlayer()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(didFinishCurrentTrack), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
     }
     
     override func viewDidLayoutSubviews() {
@@ -205,7 +208,7 @@ class PlayerViewController: UIViewController {
     
     deinit {
         print("deallocated")
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
+        removeNotificationObserver()
     }
     
     func configure(with song: Song) {
@@ -219,81 +222,5 @@ class PlayerViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-    }
-    
-    func configurePlayer() {
-        
-        if let url = (AudioManager.shared.currentAsset as? AVURLAsset)?.url, let song = currentPlayingSong, url.absoluteString == song.url {
-            
-            let timeformatter = NumberFormatter()
-            timeformatter.minimumIntegerDigits = 2
-            timeformatter.minimumFractionDigits = 0
-            timeformatter.roundingMode = .down
-
-            let minutes = AudioManager.shared.duration / 60
-            let seconds = AudioManager.shared.duration.truncatingRemainder(dividingBy: 60)
-
-            if let minStr = timeformatter.string(from: NSNumber(value: minutes)),
-               let secStr = timeformatter.string(from: NSNumber(value: seconds)) {
-                self.overallTimeLabel.text = "\(minStr):\(secStr)"
-            }
-            
-            AudioManager.shared.addTimeObserver { [weak self] currentTime in
-                
-                let progress = currentTime / AudioManager.shared.duration
-                self?.progressView.progress = Float(progress)
-
-                let minutes = currentTime / 60
-                let seconds = currentTime.truncatingRemainder(dividingBy: 60)
-
-                if let minStr = timeformatter.string(from: NSNumber(value: minutes)),
-                   let secStr = timeformatter.string(from: NSNumber(value: seconds)) {
-                    self?.currentTimeLabel.text = "\(minStr):\(secStr)"
-                }
-            }
-            
-            if AudioManager.shared.isPlaying {
-                let config = UIImage.SymbolConfiguration(pointSize: 64)
-                playPauseButton.setImage(UIImage(systemName: "pause.circle.fill", withConfiguration: config), for: .normal)
-            }
-            
-            if AudioManager.shared.isPaused {
-                let config = UIImage.SymbolConfiguration(pointSize: 64)
-                playPauseButton.setImage(UIImage(systemName: "play.circle.fill", withConfiguration: config), for: .normal)
-                
-                let progress = AudioManager.shared.currentTime / AudioManager.shared.duration
-                self.progressView.progress = Float(progress)
-
-                let minutes = AudioManager.shared.currentTime / 60
-                let seconds = AudioManager.shared.currentTime.truncatingRemainder(dividingBy: 60)
-
-                if let minStr = timeformatter.string(from: NSNumber(value: minutes)),
-                   let secStr = timeformatter.string(from: NSNumber(value: seconds)) {
-                    self.currentTimeLabel.text = "\(minStr):\(secStr)"
-                }
-            }
-            
-        } else {
-            start()
-        }
-    }
-    
-    @objc func didFinishCurrentTrack(notification: Notification) {
-        
-        if let layout = coverFlowView.collectionViewLayout as? CoverFlowViewLayout {
-            if layout.currentItemIdex < (songs.count - 1) {
-                layout.currentItemIdex += 1
-            } else {
-                layout.currentItemIdex = songs.count - 1
-            }
-            let offsetX = layout.getTargetOffsetX(for: layout.currentItemIdex)
-            self.coverFlowView.setContentOffset(CGPoint(x: offsetX, y: 0), animated: true)
-
-            let song = songs[layout.currentItemIdex]
-            self.currentPlayingSong = song
-            self.configure(with: song)
-        }
-        
-        start()
     }
 }

@@ -55,7 +55,7 @@ extension PlayerViewController: UICollectionViewDataSource, UICollectionViewDele
                 let song = songs[layout.currentItemIdex]
                 currentPlayingSong = song
                 configure(with: song)
-                start()
+                startCurrentPlayingSong()
             }
         }
     }
