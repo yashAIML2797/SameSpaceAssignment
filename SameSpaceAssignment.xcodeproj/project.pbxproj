@@ -29,7 +29,7 @@
 		1EAC148D2AC7374D0095FC38 /* UIColor_Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EAC148C2AC7374D0095FC38 /* UIColor_Ext.swift */; };
 		1EACACA62AC7CA1500E4B3F0 /* PlayerViewController_Gesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EACACA52AC7CA1500E4B3F0 /* PlayerViewController_Gesture.swift */; };
 		1EACACA82AC8754300E4B3F0 /* MinimizedPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EACACA72AC8754300E4B3F0 /* MinimizedPlayerView.swift */; };
-		1EC808202AC90C09009B38A5 /* LaunchPlayerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC8081F2AC90C09009B38A5 /* LaunchPlayerDelegate.swift */; };
+		1EC808202AC90C09009B38A5 /* PlayerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC8081F2AC90C09009B38A5 /* PlayerDelegate.swift */; };
 		1EC808222AC90CA5009B38A5 /* TabViewController_LaunchPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC808212AC90CA5009B38A5 /* TabViewController_LaunchPlayer.swift */; };
 		1EC8082C2AC9842A009B38A5 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC8082B2AC9842A009B38A5 /* AudioManager.swift */; };
 		1EC8082E2AC9E794009B38A5 /* PlayerViewController_PlaybackControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC8082D2AC9E794009B38A5 /* PlayerViewController_PlaybackControls.swift */; };
@@ -37,6 +37,11 @@
 		1EC808322ACA7DF6009B38A5 /* PlayerViewController_Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC808312ACA7DF6009B38A5 /* PlayerViewController_Notifications.swift */; };
 		1EC808342ACA7F61009B38A5 /* Double_Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC808332ACA7F61009B38A5 /* Double_Ext.swift */; };
 		1EC808362ACA8094009B38A5 /* CMTime_Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC808352ACA8094009B38A5 /* CMTime_Ext.swift */; };
+		1EC8083A2ACA90B2009B38A5 /* PlayerViewController_ViewUpdates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC808392ACA90B2009B38A5 /* PlayerViewController_ViewUpdates.swift */; };
+		1EC8083D2ACA91E3009B38A5 /* MinimizedPlayerView_Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC8083C2ACA91E3009B38A5 /* MinimizedPlayerView_Notifications.swift */; };
+		1EC8083F2ACA9278009B38A5 /* MinimizedPlayerView_Gesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC8083E2ACA9278009B38A5 /* MinimizedPlayerView_Gesture.swift */; };
+		1EC808412ACA9472009B38A5 /* MinimizedPlayerDelgate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC808402ACA9472009B38A5 /* MinimizedPlayerDelgate.swift */; };
+		1EC808432ACA9496009B38A5 /* TabViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC808422ACA9496009B38A5 /* TabViewDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,7 +69,7 @@
 		1EAC148C2AC7374D0095FC38 /* UIColor_Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor_Ext.swift; sourceTree = "<group>"; };
 		1EACACA52AC7CA1500E4B3F0 /* PlayerViewController_Gesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController_Gesture.swift; sourceTree = "<group>"; };
 		1EACACA72AC8754300E4B3F0 /* MinimizedPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinimizedPlayerView.swift; sourceTree = "<group>"; };
-		1EC8081F2AC90C09009B38A5 /* LaunchPlayerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchPlayerDelegate.swift; sourceTree = "<group>"; };
+		1EC8081F2AC90C09009B38A5 /* PlayerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDelegate.swift; sourceTree = "<group>"; };
 		1EC808212AC90CA5009B38A5 /* TabViewController_LaunchPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController_LaunchPlayer.swift; sourceTree = "<group>"; };
 		1EC8082B2AC9842A009B38A5 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		1EC8082D2AC9E794009B38A5 /* PlayerViewController_PlaybackControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController_PlaybackControls.swift; sourceTree = "<group>"; };
@@ -72,6 +77,11 @@
 		1EC808312ACA7DF6009B38A5 /* PlayerViewController_Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController_Notifications.swift; sourceTree = "<group>"; };
 		1EC808332ACA7F61009B38A5 /* Double_Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double_Ext.swift; sourceTree = "<group>"; };
 		1EC808352ACA8094009B38A5 /* CMTime_Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMTime_Ext.swift; sourceTree = "<group>"; };
+		1EC808392ACA90B2009B38A5 /* PlayerViewController_ViewUpdates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController_ViewUpdates.swift; sourceTree = "<group>"; };
+		1EC8083C2ACA91E3009B38A5 /* MinimizedPlayerView_Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinimizedPlayerView_Notifications.swift; sourceTree = "<group>"; };
+		1EC8083E2ACA9278009B38A5 /* MinimizedPlayerView_Gesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinimizedPlayerView_Gesture.swift; sourceTree = "<group>"; };
+		1EC808402ACA9472009B38A5 /* MinimizedPlayerDelgate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinimizedPlayerDelgate.swift; sourceTree = "<group>"; };
+		1EC808422ACA9496009B38A5 /* TabViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,9 +155,9 @@
 		1E78E4FE2AC5A22A00444631 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1EC8083B2ACA91CC009B38A5 /* MinimizedPlayerView */,
 				1E78E4FF2AC5A23F00444631 /* SongsListTableViewCell.swift */,
 				1E78E5132AC7116A00444631 /* CoverFlowCell.swift */,
-				1EACACA72AC8754300E4B3F0 /* MinimizedPlayerView.swift */,
 				1E78E5072AC675FA00444631 /* TabView.swift */,
 				1E78E5092AC67B1A00444631 /* TabViewButton.swift */,
 			);
@@ -168,9 +178,10 @@
 			isa = PBXGroup;
 			children = (
 				1E78E50B2AC69E3400444631 /* PlayerViewController.swift */,
-				1EC808312ACA7DF6009B38A5 /* PlayerViewController_Notifications.swift */,
-				1EACACA52AC7CA1500E4B3F0 /* PlayerViewController_Gesture.swift */,
 				1EC8082D2AC9E794009B38A5 /* PlayerViewController_PlaybackControls.swift */,
+				1EC808312ACA7DF6009B38A5 /* PlayerViewController_Notifications.swift */,
+				1EC808392ACA90B2009B38A5 /* PlayerViewController_ViewUpdates.swift */,
+				1EACACA52AC7CA1500E4B3F0 /* PlayerViewController_Gesture.swift */,
 				1EC8082F2ACA10FD009B38A5 /* PlayerViewController_CoverFlowView.swift */,
 				1E78E5112AC7111500444631 /* CoverFlowViewLayout.swift */,
 			);
@@ -190,9 +201,21 @@
 		1EC8081E2AC90BED009B38A5 /* Delegates */ = {
 			isa = PBXGroup;
 			children = (
-				1EC8081F2AC90C09009B38A5 /* LaunchPlayerDelegate.swift */,
+				1EC8081F2AC90C09009B38A5 /* PlayerDelegate.swift */,
+				1EC808402ACA9472009B38A5 /* MinimizedPlayerDelgate.swift */,
+				1EC808422ACA9496009B38A5 /* TabViewDelegate.swift */,
 			);
 			path = Delegates;
+			sourceTree = "<group>";
+		};
+		1EC8083B2ACA91CC009B38A5 /* MinimizedPlayerView */ = {
+			isa = PBXGroup;
+			children = (
+				1EACACA72AC8754300E4B3F0 /* MinimizedPlayerView.swift */,
+				1EC8083C2ACA91E3009B38A5 /* MinimizedPlayerView_Notifications.swift */,
+				1EC8083E2ACA9278009B38A5 /* MinimizedPlayerView_Gesture.swift */,
+			);
+			path = MinimizedPlayerView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -267,10 +290,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E78E5062AC5BAD800444631 /* TabViewController_Gestures.swift in Sources */,
+				1EC8083A2ACA90B2009B38A5 /* PlayerViewController_ViewUpdates.swift in Sources */,
 				1EC8082E2AC9E794009B38A5 /* PlayerViewController_PlaybackControls.swift in Sources */,
 				1E78E5002AC5A23F00444631 /* SongsListTableViewCell.swift in Sources */,
 				1E78E5082AC675FA00444631 /* TabView.swift in Sources */,
 				1EACACA62AC7CA1500E4B3F0 /* PlayerViewController_Gesture.swift in Sources */,
+				1EC8083F2ACA9278009B38A5 /* MinimizedPlayerView_Gesture.swift in Sources */,
 				1E78E4F92AC59C8900444631 /* Song.swift in Sources */,
 				1E78E50A2AC67B1A00444631 /* TabViewButton.swift in Sources */,
 				1E78E4F72AC59C4E00444631 /* Results.swift in Sources */,
@@ -280,17 +305,20 @@
 				1EC808322ACA7DF6009B38A5 /* PlayerViewController_Notifications.swift in Sources */,
 				1EC808342ACA7F61009B38A5 /* Double_Ext.swift in Sources */,
 				1E78E4FB2AC5A06F00444631 /* UIView_Ext.swift in Sources */,
-				1EC808202AC90C09009B38A5 /* LaunchPlayerDelegate.swift in Sources */,
+				1EC808202AC90C09009B38A5 /* PlayerDelegate.swift in Sources */,
 				1E78E5122AC7111500444631 /* CoverFlowViewLayout.swift in Sources */,
 				1E78E4DD2AC5995000444631 /* AppDelegate.swift in Sources */,
 				1E78E5142AC7116A00444631 /* CoverFlowCell.swift in Sources */,
 				1EAC148D2AC7374D0095FC38 /* UIColor_Ext.swift in Sources */,
+				1EC8083D2ACA91E3009B38A5 /* MinimizedPlayerView_Notifications.swift in Sources */,
 				1E78E4F12AC5996700444631 /* APIService.swift in Sources */,
 				1EC808362ACA8094009B38A5 /* CMTime_Ext.swift in Sources */,
 				1E78E5022AC5B58B00444631 /* TabViewController.swift in Sources */,
 				1EC808222AC90CA5009B38A5 /* TabViewController_LaunchPlayer.swift in Sources */,
+				1EC808412ACA9472009B38A5 /* MinimizedPlayerDelgate.swift in Sources */,
 				1EC8082C2AC9842A009B38A5 /* AudioManager.swift in Sources */,
 				1EACACA82AC8754300E4B3F0 /* MinimizedPlayerView.swift in Sources */,
+				1EC808432ACA9496009B38A5 /* TabViewDelegate.swift in Sources */,
 				1E78E4DF2AC5995000444631 /* SceneDelegate.swift in Sources */,
 				1E78E50C2AC69E3400444631 /* PlayerViewController.swift in Sources */,
 			);

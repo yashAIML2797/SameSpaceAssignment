@@ -32,13 +32,11 @@ extension PlayerViewController {
             }
             
             if AudioManager.shared.isPlaying {
-                let config = UIImage.SymbolConfiguration(pointSize: 64)
-                playPauseButton.setImage(UIImage(systemName: "pause.circle.fill", withConfiguration: config), for: .normal)
+                self.setButtonToPause()
             }
             
             if AudioManager.shared.isPaused {
-                let config = UIImage.SymbolConfiguration(pointSize: 64)
-                playPauseButton.setImage(UIImage(systemName: "play.circle.fill", withConfiguration: config), for: .normal)
+                self.setButtonToPlay()
                 
                 let currentTime = AudioManager.shared.currentTime
                 let progress = Float(currentTime.seconds / duration.seconds)
@@ -85,59 +83,30 @@ extension PlayerViewController {
         }
     }
     
-    func resetViews() {
-        self.progressView.progress = 0
-        self.currentTimeLabel.text = "-:--"
-        self.overallTimeLabel.text = "-:--"
-        let config = UIImage.SymbolConfiguration(pointSize: 64)
-        self.playPauseButton.setImage(UIImage(systemName: "play.circle.fill", withConfiguration: config), for: .normal)
-    }
-    
-    func setViewsBeforeStart(minString: String, secString: String) {
-        self.progressView.progress = 0
-        self.currentTimeLabel.text = "00:00"
-        self.overallTimeLabel.text = "\(minString):\(secString)"
-        let config = UIImage.SymbolConfiguration(pointSize: 64)
-        self.playPauseButton.setImage(UIImage(systemName: "pause.circle.fill", withConfiguration: config), for: .normal)
-    }
-    
-    func updateViewsWithCurrentProgress(progress: Float, minString: String, secString: String) {
-        self.progressView.progress = progress
-        self.currentTimeLabel.text = "\(minString):\(secString)"
-    }
-    
-    @objc func handlePlayPauseButtonAction(sender: UIButton) {
-        let config = UIImage.SymbolConfiguration(pointSize: 64)
-        
-        if AudioManager.shared.isPlaying {
-            AudioManager.shared.pause()
-            playPauseButton.setImage(UIImage(systemName: "play.circle.fill", withConfiguration: config), for: .normal)
-        } else {
-            AudioManager.shared.play()
-            playPauseButton.setImage(UIImage(systemName: "pause.circle.fill", withConfiguration: config), for: .normal)
-        }
-    }
-    
-    @objc func handleNextButtonAction(sender: UIButton) {
+    func moveToNextSong() {
         if let layout = coverFlowView.collectionViewLayout as? CoverFlowViewLayout {
+            
+            var nextSongIndex = layout.currentItemIdex
+            
             if layout.currentItemIdex < (songs.count - 1) {
-                layout.currentItemIdex += 1
+                nextSongIndex += 1
             } else {
-                layout.currentItemIdex = songs.count - 1
+                nextSongIndex = songs.count - 1
             }
-            let offsetX = layout.getTargetOffsetX(for: layout.currentItemIdex)
+            let offsetX = layout.getTargetOffsetX(for: nextSongIndex)
             self.coverFlowView.setContentOffset(CGPoint(x: offsetX, y: 0), animated: true)
             
-            let song = songs[layout.currentItemIdex]
-            self.currentPlayingSong = song
-            self.configure(with: song)
+            
+            layout.currentItemIdex = nextSongIndex
+            let nextSong = songs[nextSongIndex]
+            self.currentPlayingSong = nextSong
+            self.configure(with: nextSong)
         }
         
         startCurrentPlayingSong()
     }
     
-    @objc func handlePreviousButtonAction(sender: UIButton) {
-        
+    func moveToPreviousSong() {
         guard AudioManager.shared.currentTime.seconds <= 3 else {
             AudioManager.shared.pause()
             AudioManager.shared.restart()
@@ -146,20 +115,41 @@ extension PlayerViewController {
         }
         
         if let layout = coverFlowView.collectionViewLayout as? CoverFlowViewLayout {
+            var previousSongIndex = layout.currentItemIdex
+            
             if layout.currentItemIdex > 0 {
-                layout.currentItemIdex -= 1
+                previousSongIndex -= 1
             } else {
-                layout.currentItemIdex = 0
+                previousSongIndex = 0
             }
             
-            let offsetX = layout.getTargetOffsetX(for: layout.currentItemIdex)
+            let offsetX = layout.getTargetOffsetX(for: previousSongIndex)
             self.coverFlowView.setContentOffset(CGPoint(x: offsetX, y: 0), animated: true)
             
-            let song = songs[layout.currentItemIdex]
-            self.currentPlayingSong = song
-            self.configure(with: song)
+            layout.currentItemIdex = previousSongIndex
+            let previousSong = songs[previousSongIndex]
+            self.currentPlayingSong = previousSong
+            self.configure(with: previousSong)
         }
         
         startCurrentPlayingSong()
+    }
+    
+    @objc func handlePlayPauseButtonAction(sender: UIButton) {
+        if AudioManager.shared.isPlaying {
+            AudioManager.shared.pause()
+            self.setButtonToPlay()
+        } else {
+            AudioManager.shared.play()
+            self.setButtonToPause()
+        }
+    }
+    
+    @objc func handleNextButtonAction(sender: UIButton) {
+        moveToNextSong()
+    }
+    
+    @objc func handlePreviousButtonAction(sender: UIButton) {
+        moveToPreviousSong()
     }
 }

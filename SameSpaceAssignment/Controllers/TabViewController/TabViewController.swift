@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TabViewController: UIViewController, MinimizedPlayerDelgate {
+class TabViewController: UIViewController {
     
     var swipeGesture: UIPanGestureRecognizer!
     

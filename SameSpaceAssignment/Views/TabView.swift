@@ -7,11 +7,6 @@
 
 import UIKit
 
-protocol TabViewDelegate: NSObject {
-    var isShowingSecondViewController: Bool {get set}
-    func switchViewController()
-}
-
 class TabView: UIView {
     
     weak var delegate: TabViewDelegate?

@@ -8,7 +8,7 @@
 import UIKit
 
 class SongsListTableViewController: UITableViewController {
-    weak var delegate: LaunchPlayerDelegate?
+    weak var delegate: PlayerDelegate?
     
     var songs: [Song] = [] {
         didSet {

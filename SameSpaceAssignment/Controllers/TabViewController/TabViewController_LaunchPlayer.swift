@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension TabViewController: LaunchPlayerDelegate {
+extension TabViewController: PlayerDelegate {
     
     func loadMinimizedPlayer(with songs: [Song], startingAt song: Song) {
         if isShowingMinimizedPlayer {

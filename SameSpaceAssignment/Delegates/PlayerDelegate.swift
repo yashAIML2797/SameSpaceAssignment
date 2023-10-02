@@ -7,8 +7,7 @@
 
 import Foundation
 
-protocol LaunchPlayerDelegate: NSObject {
+protocol PlayerDelegate: NSObject, MinimizedPlayerDelgate {
     var isShowingMinimizedPlayer: Bool {set get}
     func loadPlayer(with songs: [Song], startingAt song: Song)
-    func loadMinimizedPlayer(with songs: [Song], startingAt song: Song)
 }

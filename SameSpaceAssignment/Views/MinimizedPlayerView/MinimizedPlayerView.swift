@@ -7,12 +7,8 @@
 
 import UIKit
 
-protocol MinimizedPlayerDelgate: NSObject {
-    func loadMinimizedPlayer(with songs: [Song], startingAt song: Song)
-}
-
 class MinimizedPlayerView: UIView {
-    weak var launchPlayerDelegate: LaunchPlayerDelegate?
+    weak var launchPlayerDelegate: PlayerDelegate?
     
     var currentPlayingSong: Song? {
         didSet {
@@ -51,7 +47,7 @@ class MinimizedPlayerView: UIView {
         super.init(frame: frame)
         setupViews()
         addGesture()
-        NotificationCenter.default.addObserver(self, selector: #selector(didFinishCurrentTrack), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
+        addNotificationObserver()
     }
     
     required init?(coder: NSCoder) {
@@ -59,7 +55,7 @@ class MinimizedPlayerView: UIView {
     }
     
     deinit {
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
+        removeNotificationObserver()
     }
     
     private func setupViews() {
@@ -105,57 +101,30 @@ class MinimizedPlayerView: UIView {
             }
         }
         
-        
-        let config = UIImage.SymbolConfiguration(pointSize: 32)
         if AudioManager.shared.isPaused {
-            playPauseButton.setImage(UIImage(systemName: "play.circle.fill", withConfiguration: config), for: .normal)
+            setButtonToPlay()
         } else {
-            playPauseButton.setImage(UIImage(systemName: "pause.circle.fill", withConfiguration: config), for: .normal)
+            setButtonToPause()
         }
     }
     
     @objc func handlePlayPauseButtonAction(sender: UIButton) {
-        let config = UIImage.SymbolConfiguration(pointSize: 32)
-        
         if AudioManager.shared.isPlaying {
             AudioManager.shared.pause()
-            playPauseButton.setImage(UIImage(systemName: "play.circle.fill", withConfiguration: config), for: .normal)
+            setButtonToPlay()
         } else {
             AudioManager.shared.play()
-            playPauseButton.setImage(UIImage(systemName: "pause.circle.fill", withConfiguration: config), for: .normal)
+            setButtonToPause()
         }
     }
     
-    func addGesture() {
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
-        addGestureRecognizer(tapGesture)
+    func setButtonToPlay() {
+        let config = UIImage.SymbolConfiguration(pointSize: 32)
+        self.playPauseButton.setImage(UIImage(systemName: "play.circle.fill", withConfiguration: config), for: .normal)
     }
     
-    @objc func handleTap(gesture: UITapGestureRecognizer) {
-        if let song = currentPlayingSong {
-            launchPlayerDelegate?.loadPlayer(with: songs, startingAt: song)
-        }
-    }
-    
-    @objc func didFinishCurrentTrack(notification: Notification) {
-        
-        if let currentPlayingSong = currentPlayingSong,
-           let currentIndex = songs.firstIndex(where: {$0.id == currentPlayingSong.id})
-        {
-            var nextSongIndex = currentIndex
-            
-            if currentIndex < (songs.count - 1) {
-                nextSongIndex += 1
-            } else {
-                nextSongIndex = songs.count - 1
-            }
-            
-            let nextSong = songs[nextSongIndex]
-            self.currentPlayingSong = nextSong
-            self.configure(with: nextSong)
-            if let url = URL(string: nextSong.url) {
-                AudioManager.shared.start(itemURL: url)
-            }
-        }
+    func setButtonToPause() {
+        let config = UIImage.SymbolConfiguration(pointSize: 32)
+        self.playPauseButton.setImage(UIImage(systemName: "pause.circle.fill", withConfiguration: config), for: .normal)
     }
 }
